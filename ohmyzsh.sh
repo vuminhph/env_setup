@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 # Check operating system
 OS="$(uname -s)"
 
@@ -80,11 +78,6 @@ curl -L https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/in
 echo "Adding zsh-autosuggestions plugin..."
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
-# Add plugin to .zshrc
-echo "Adding plugin to .zshrc..."
-sed -i '/plugins=( /s/)$/\n zsh-autosuggestions)/' ~/.zshrc
-
-echo "Oh My Zsh and zsh-autosuggestions installed successfully!"
 
 # Optional: Set Zsh as the default shell
 echo "Do you want to set Zsh as your default shell? (y/N)"
