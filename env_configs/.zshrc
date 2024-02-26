@@ -125,6 +125,9 @@ export CUDA_HOME=/usr/local/cuda-12.2
 export PATH=/usr/local/cuda-12.2/bin/:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64:$LD_LIBRARY_PATH
 
-# Zoxide
+# ZOXIDE
 export PATH=/root/.local/bin:$PATH
 eval "$(zoxide init --cmd cd zsh)"
+
+# ATUIN
+eval "$(atuin init zsh)"
