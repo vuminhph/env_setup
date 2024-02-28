@@ -39,7 +39,7 @@ esac
 
 # Check if Zsh is already installed
 if command -v zsh &> /dev/null; then
-  echo -e -e "${GREEN}Zsh is already installed.${RESET}"
+  echo -e "${GREEN}Zsh is already installed.${RESET}"
 else
   # Install Zsh using package manager
   case $PACKAGE_MANAGER in
@@ -90,13 +90,46 @@ else
 fi
 
 
+# vim-gtk
+if [[ $OS == "Linux" ]]; then
+  # Check for Ubuntu/Debian-based system
+  if [[ $(which apt-get) || $(which apt) ]]; then
+    if command -v gvim >/dev/null 2>&1; then
+      echo -e "${GREEN}vim-gtk3 is already installed.${RESET}"
+    else
+      echo "Installing vim-gtk3"
+      sudo apt-get install vim-gtk3 -y
+      echo -e "${GREEN} vim-gtk3 installation completed!${RESET}"
+    fi
+  else
+    echo -e "${RED}Error: Unsupported Linux distribution. Please install vim-gtk3 manually.${RESET}"
+  fi
+elif [[ $OS == "Darwin" ]]; then
+  # Check for macOS using Homebrew
+  if [[ $(which brew) ]]; then
+    if brew list --formula vim-gtk >/dev/null 2>&1; then
+      echo -e "${GREEN}vim-gtk3 (or vim-gtk) is already installed.${RESET}"
+    else
+      echo "Installing vim-gtk3"
+      brew install vim-gtk
+      echo -e "${GREEN} vim-gtk3 installation completed!${RESET}"
+    fi
+  else
+    echo -e "${RED}Error: Homebrew not found. Please install Homebrew and try again.${RESET}"
+  fi
+else
+  echo -e "${RED}Error: Unsupported operating system. Installation not available.${RESET}"
+fi
+
+
+
 # ZOXIDE
 
 # Check operating system and install zoxide
 if command -v zoxide &> /dev/null; then
   echo -e "${GREEN}zoxide already installed.${RESET}"
 else
-  if [[ "$(uname -s)" == "Linux" ]]; then
+  if [[ "$OS" == "Linux" ]]; then
     # Check if curl is installed
     if ! command -v curl &> /dev/null; then
       echo -e "Error: curl is not installed. Please install it first."
@@ -105,7 +138,7 @@ else
 
     curl -sS https://raw.githubusercontent.com/ajeetdsouza/zoxide/main/install.sh | bash
     echo -e "${GREEN}$ zoxide installation completed! ${RESET}"
-  elif [[ "$(uname -s)" == "Darwin" ]]; then
+  elif [[ "$OS" == "Darwin" ]]; then
     # Use Homebrew
     brew install zoxide
     echo -e "${GREEN}$ zoxide installation completed! ${RESET}"
