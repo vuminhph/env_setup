@@ -122,6 +122,35 @@ else
 fi
 
 
+# tmux
+if [[ $OS == "Linux" ]]; then
+  if [[ $(which apt-get) || $(which apt) ]]; then
+    if command -v tmux >/dev/null 2>&1; then
+      echo -e "${GREEN}tmux is already installed.${RESET}"
+    else
+      echo "Installing tmux"
+      sudo apt-get install tmux -y
+      echo -e "${GREEN} tmux installation completed!${RESET}"
+    fi
+  else
+    echo -e "${RED}Error: Unsupported Linux distribution. Please install tmux manually.${RESET}"
+  fi
+elif [[ $OS == "Darwin" ]]; then
+  # Check for macOS using Homebrew
+  if [[ $(which brew) ]]; then
+    if brew list --formula tmux >/dev/null 2>&1; then
+      echo -e "${GREEN}tmux is already installed.${RESET}"
+    else
+      echo "Installing tmux"
+      brew install tmux
+      echo -e "${GREEN} tmux installation completed!${RESET}"
+    fi
+  else
+    echo -e "${RED}Error: Homebrew not found. Please install Homebrew and try again.${RESET}"
+  fi
+else
+  echo -e "${RED}Error: Unsupported operating system. Installation not available.${RESET}"
+fi
 
 # ZOXIDE
 
