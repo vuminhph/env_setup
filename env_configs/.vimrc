@@ -2,6 +2,12 @@
 :set number relativenumber
 :set nu rnu
 
+
+"tab stop
+:set tabstop=4
+
+
+" Wilder Menu 
 call plug#begin()
 if has('nvim')
   function! UpdateRemotePlugins(...)
@@ -15,8 +21,11 @@ else
   Plug 'gelguy/wilder.nvim'
 
   " To use Python remote plugin features in Vim, can be skipped
-  Plug 'roxma/nvim-yarp'
+  " Required for vim 8
   Plug 'roxma/vim-hug-neovim-rpc'
+  " Install this plugin
+  Plug 'roxma/nvim-yarp', { 'do': 'pip install -r requirements.txt' }
+
 endif
 call plug#end()
 
