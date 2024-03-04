@@ -131,4 +131,8 @@ export PATH=/root/.local/bin:$PATH
 eval "$(zoxide init --cmd cd zsh)"
 
 # ATUIN
-eval "$(atuin init zsh)"
+export ATUIN_NOBIND="true"
+eval "$(atuin init zsh --disable-up-arrow)"
+
+bindkey '^[[1;2A' atuin-search
+
