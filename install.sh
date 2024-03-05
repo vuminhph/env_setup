@@ -225,6 +225,7 @@ fi
 if [[ -f ~/.vim/autoload/plug.vim ]]; then
   # VimPlug is installed, run PluginInstall
   echo -e "${GREEN}VimPlug plugins are already installed.${RESET}"
+  vim +PlugInstall +qquit
 else
   # VimPlug is not installed, install it then run PlugInstall
   curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
