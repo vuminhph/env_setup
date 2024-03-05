@@ -49,7 +49,7 @@ else
       ;;
     "apt")
       echo -e "Installing Zsh with apt..."
-      sudo apt install zsh
+      apt install zsh
       ;;
     *)
       echo -e "${RED}Package manager '$PACKAGE_MANAGER' not supported. Please install Zsh manually.${RESET}"
@@ -98,7 +98,7 @@ if [[ $OS == "Linux" ]]; then
       echo -e "${GREEN}vim-gtk3 is already installed.${RESET}"
     else
       echo "Installing vim-gtk3"
-      sudo apt-get install vim-gtk3 -y
+      apt-get install vim-gtk3 -y
       echo -e "${GREEN} vim-gtk3 installation completed!${RESET}"
     fi
   else
@@ -129,7 +129,7 @@ if [[ $OS == "Linux" ]]; then
       echo -e "${GREEN}tmux is already installed.${RESET}"
     else
       echo "Installing tmux"
-      sudo apt-get install tmux -y
+      apt-get install tmux -y
       echo -e "${GREEN} tmux installation completed!${RESET}"
     fi
   else
