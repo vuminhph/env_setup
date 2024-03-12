@@ -177,8 +177,7 @@ else
   fi
 fi
 
-# Install fzf 
-
+# fzf 
 if command -v fzf &> /dev/null; then
   echo -e "${GREEN}fzf already installed.${RESET}"
 else
@@ -188,8 +187,27 @@ else
     echo -e "${GREEN}fzf installation completed!${RESET}"
   elif [[ "$(uname -s)" == "Darwin" ]]; then
     # Use Homebrew
-    brew install zoxide
+    brew install fzf
     echo -e "${GREEN}fzf installation completed!${RESET}"
+  else
+    echo -e "${RED}Error: Unsupported operating system.${RESET}"
+    exit 1
+  fi
+fi
+
+
+# jq
+if command -v jq &> /dev/null; then
+  echo -e "${GREEN}jq already installed.${RESET}"
+else
+  # Install jq
+  if [[ "$(uname -s)" == "Linux" ]]; then
+    apt install jq
+    echo -e "${GREEN}jq installation completed!${RESET}"
+  elif [[ "$(uname -s)" == "Darwin" ]]; then
+    # Use Homebrew
+    brew install jq
+    echo -e "${GREEN}jq installation completed!${RESET}"
   else
     echo -e "${RED}Error: Unsupported operating system.${RESET}"
     exit 1
