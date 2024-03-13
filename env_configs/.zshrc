@@ -107,19 +107,18 @@ source $ZSH/oh-my-zsh.sh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/mnt/data/home/minhpv17/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+__conda_setup="$('/root/miniconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/mnt/data/home/minhpv17/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/mnt/data/home/minhpv17/miniconda3/etc/profile.d/conda.sh"
+    if [ -f "/root/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/root/miniconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/mnt/data/home/minhpv17/miniconda3/bin:$PATH"
+        export PATH="/root/miniconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
 # <<< conda initialize <<<
-
 
 # Set CUDA PATH
 export CUDA_HOME=/usr/local/cuda-12.2
@@ -136,3 +135,5 @@ eval "$(atuin init zsh --disable-up-arrow)"
 
 bindkey '^[[1;2A' atuin-search
 
+# NeoVim
+export PATH="$PATH:/opt/nvim/"
