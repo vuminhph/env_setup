@@ -14,6 +14,9 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
     -- { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+    -- import lush colorscheme
+    --TODO: load path dynamically
+    { dir = "/root/env_setup/cyberpunk_2077", name = "cyberpunk_2077", lazy = true },
     -- import/override with your plugins
     { import = "plugins" },
   },

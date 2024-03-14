@@ -91,13 +91,20 @@ if [ -f ~/.config/nvim/lazyvim.json ]; then
 else
 	# required
 	mv $HOME/.config/nvim{,.bak}
-
-	# optional but recommended
-	mv $HOME/.local/share/nvim{,.bak}
-	mv $HOME/.local/state/nvim{,.bak}
-	mv $HOME/.cache/nvim{,.bak}
-
 	cp -r env_configs/nvim $HOME/.config
+	echo -e "${GREEN} LazyVim installation completed!${RESET}"
+fi
+
+# tree
+if command -v tree &>/dev/null; then
+	echo -e "${GREEN}tree is already installed.${RESET}"
+else
+	if [[ $OS == "Linux" ]]; then
+		apt install tree
+	elif [[ $OS == "Darwin" ]]; then
+		brew install tree
+	fi
+	echo -e "${GREEN} tree installation completed!${RESET}"
 fi
 
 # vim-gtk
