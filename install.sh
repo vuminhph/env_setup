@@ -252,6 +252,33 @@ else
 	fi
 fi
 
+if ! command -v lazygit &>/dev/null; then
+	if [[ "$OS" == "Linux" ]]; then
+		# Install on Ubuntu and similar systems
+		if [[ $(lsb_release -rs) =~ ^[0-9]+\.[0-9]+$ ]]; then # Check for Ubuntu/Debian format
+			LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | grep -Po '"tag_name": "v\K[^"]*')
+			curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/latest/download/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+			tar xf lazygit.tar.gz lazygit
+			install lazygit /usr/local/bin
+			rm -rf lazygit lazygit.tar.gz
+			echo -e "${GREEN}LazyGit installation completed!${RESET}"
+		else
+			echo -e "${RED}Unsupported Linux distribution. Please refer to the lazygit installation guide for your system: https://github.com/jesseduffield/lazygit${RESET}"
+		fi
+	elif [[ "$OS" == "Darwin" ]]; then
+		# Install on macOS using Homebrew
+		if ! command -v brew &>/dev/null; then
+			echo -e "${RED}Homebrew is not installed. Please install Homebrew and try again.${RESET}"
+		else
+			brew install lazygit
+		fi
+	else
+		echo -e "${RED}Unsupported operating system. Please refer to the lazygit installation guide for your system: https://github.com/jesseduffield/lazygit${RESET}"
+	fi
+else
+	echo -e "${GREEN}lazygit is already installed.${RESET}"
+fi
+
 # Source .zshrc to apply changes
 echo -e "Sourcing .zshrc..."
 zsh

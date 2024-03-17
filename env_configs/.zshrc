@@ -137,3 +137,6 @@ bindkey '^[[1;2A' atuin-search
 
 # NeoVim
 export PATH="$PATH:/opt/nvim/"
+
+# LazyGit
+alias lg='lazygit' 
