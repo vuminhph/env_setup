@@ -137,6 +137,10 @@ bindkey '^[[1;2A' atuin-search
 
 # NeoVim
 export PATH="$PATH:/opt/nvim/"
+alias v="nvim"
 
 # LazyGit
-alias lg='lazygit' 
+alias lg='lazygit'
+
+# Iterm2 Shell Integration
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"

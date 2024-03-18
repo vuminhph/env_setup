@@ -168,9 +168,14 @@ else
 	echo -e "${RED}Error: Unsupported operating system. Installation not available.${RESET}"
 fi
 
-# ZOXIDE
+# tmux package manager
+if [ -d ~/.tmux/plugins/tpm ]; then
+	echo -e "${GREEN} tmux package manager already installed. ${RESET}"
+else
+	git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+fi
 
-# Check operating system and install zoxide
+# ZOXIDE
 if command -v zoxide &>/dev/null; then
 	echo -e "${GREEN}zoxide already installed.${RESET}"
 else
