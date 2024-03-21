@@ -107,35 +107,22 @@ else
 	echo -e "${GREEN} tree installation completed!${RESET}"
 fi
 
-# vim-gtk
-if [[ $OS == "Linux" ]]; then
-	# Check for Ubuntu/Debian-based system
-	if [[ $(which apt-get) || $(which apt) ]]; then
-		if command -v gvim >/dev/null 2>&1; then
-			echo -e "${GREEN}vim-gtk3 is already installed.${RESET}"
-		else
-			echo "Installing vim-gtk3"
-			apt-get install vim-gtk3 -y
-			echo -e "${GREEN} vim-gtk3 installation completed!${RESET}"
-		fi
+if [[ $OS == "Darwin" ]]; then
+	# macOS - check for pbcopy
+	if ! command -v pbcopy &>/dev/null; then
+		brew install pbcopy
+		echo -e "$(GREEN) pbcopy installation completed ${RESET}"
 	else
-		echo -e "${RED}Error: Unsupported Linux distribution. Please install vim-gtk3 manually.${RESET}"
+		echo -e "${GREEN}pbcopy is already installed.${RESET}"
 	fi
-elif [[ $OS == "Darwin" ]]; then
-	# Check for macOS using Homebrew
-	if [[ $(which brew) ]]; then
-		if brew list --formula vim-gtk >/dev/null 2>&1; then
-			echo -e "${GREEN}vim-gtk3 (or vim-gtk) is already installed.${RESET}"
-		else
-			echo "Installing vim-gtk3"
-			brew install vim-gtk
-			echo -e "${GREEN} vim-gtk3 installation completed!${RESET}"
-		fi
+elif [[ $OS == "Linux" ]]; then
+	# Linux - check for xclip
+	if ! command -v xclip &>/dev/null; then
+		apt-get install xclip
+		echo "${GREEN}xclip installation completed ${RESET}"
 	else
-		echo -e "${RED}Error: Homebrew not found. Please install Homebrew and try again.${RESET}"
+		echo -e "${GREEN}xclip is already installed.${RESET}"
 	fi
-else
-	echo -e "${RED}Error: Unsupported operating system. Installation not available.${RESET}"
 fi
 
 # tmux
