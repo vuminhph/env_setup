@@ -1,10 +1,10 @@
 return {
   "nvim-telescope/telescope.nvim",
-  keys = {
-    "<leader>fg",
-    function()
-      require("telescope.builtin").live_grep({})
-    end,
-    desc = "Live Grep",
+  dependencies = {
+    "nvim-lua/plenary.nvim",
   },
+  config = function()
+    local builtin = require("telescope.builtin")
+    vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Live Grep" })
+  end,
 }

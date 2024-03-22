@@ -208,13 +208,17 @@ local theme = lush(function(injected_functions)
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		-- DiagnosticError            { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticWarn             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticError({ fg = red, bg = red.da(80).de(20), gui = "bold" }), -- U fg = yellow, bg = yellow.da(85).de(20)sed as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
+		DiagnosticWarn({ fg = yellow, bg = yellow.da(85).de(20) }), -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticInfo             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticHint             { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
 		-- DiagnosticOk               { } , -- Used as the base highlight group. Other Diagnostic highlights link to this by default (except Underline)
-		-- DiagnosticVirtualTextError { } , -- Used for "Error" diagnostic virtual text.
-		-- DiagnosticVirtualTextWarn  { } , -- Used for "Warn" diagnostic virtual text.
+		DiagnosticVirtualTextError({
+			fg = red,
+			bg = red.da(80).de(20),
+			gui = "bold",
+		}), -- Used for "Error" diagnostic virtual text.
+		DiagnosticVirtualTextWarn({ fg = yellow, bg = yellow.da(85).de(20) }), -- Used for "Warn" diagnostic virtual text.
 		-- DiagnosticVirtualTextInfo  { } , -- Used for "Info" diagnostic virtual text.
 		-- DiagnosticVirtualTextHint  { } , -- Used for "Hint" diagnostic virtual text.
 		-- DiagnosticVirtualTextOk    { } , -- Used for "Ok" diagnostic virtual text.
