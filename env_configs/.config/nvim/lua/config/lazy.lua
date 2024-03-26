@@ -6,6 +6,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 
+local homeDir = os.getenv("HOME")
+
 require("lazy").setup({
   spec = {
     -- add LazyVim and import its plugins
@@ -15,8 +17,7 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
     -- import lush colorscheme
-    --TODO: load path dynamically
-    { dir = "/root/env_setup/cyberpunk_2077", name = "cyberpunk_2077", lazy = true },
+    { dir = string.format("%s/env_setup/cyberpunk_2077", homeDir), name = "cyberpunk_2077", lazy = true },
     -- import/override with your plugins
     { import = "plugins" },
   },
