@@ -1,2 +1,5 @@
 # Swap files
 *.swp
+
+# DSStore files 
+.DS_Store

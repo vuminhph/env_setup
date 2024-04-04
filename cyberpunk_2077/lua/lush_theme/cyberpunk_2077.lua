@@ -67,14 +67,14 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		ColorColumn({}), -- Columns set with 'colorcolumn'
-		Conceal({}), -- Placeholder characters substituted for concealed text (see 'conceallevel')
-		Cursor({ bg = red }), -- Character under the cursor
-		CurSearch({ bg = blue.de(70), gui = "bold" }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
-		-- lCursor        { }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+		-- Conceal{}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
+		-- ColorColumn{}, -- Columns set with 'colorcolumn'
+		-- Cursor{}, -- Character under the cursor
+		CurSearch({ bg = yellow, fg = red, gui = "bold" }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
+		-- lCursor {} , -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		-- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
 		-- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-		Directory({}), -- Directory names (and other special names in listings)
+		-- Directory({}), -- Directory names (and other special names in listings)
 		DiffAdd({ fg = yellow }), -- Diff mode: Added line |diff.txt|
 		DiffChange({ fg = blue }), -- Diff mode: Changed line |diff.txt|
 		DiffDelete({ fg = red }), -- Diff mode: Deleted line |diff.txt|
@@ -84,54 +84,56 @@ local theme = lush(function(injected_functions)
 		-- TermCursorNC   { }, -- Cursor in an unfocused terminal
 		-- ErrorMsg       { }, -- Error messages on the command line
 		VertSplit({ gui = "bold" }), -- Column separating vertically split windows
-		Folded({}), -- Line used for closed folds
-		FoldColumn({}), -- 'foldcolumn'
-		SignColumn({}), -- Column where |signs| are displayed
-		IncSearch({}), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
-		Substitute({}), -- |:substitute| replacement text highlighting
+		-- Folded({}), -- Line used for closed folds
+		-- FoldColumn({}), -- 'foldcolumn'
+		-- SignColumn({}), -- Column where |signs| are displayed
+		IncSearch({ fg = blue, bg = blue.da(85).de(20) }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
+		Substitute({ fg = blue, bg = blue.da(85).de(20) }), -- |:substitute| replacement text highlighting
 		LineNr({ fg = blue }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 		-- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
 		-- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
 		-- CursorLineNr   { fg = blue }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
 		-- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
 		-- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
-		-- MatchParen     { }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+		MatchParen({ bg = blue.da(30), fg = yellow, gui = "bold" }), -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		-- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
 		MsgArea({ fg = blue }), -- Area for messages and cmdline
-		MsgSeparator({}), -- Separator for scrolled messages, `msgsep` flag of 'display'
-		MoreMsg({}), -- |more-prompt|
+		-- MsgSeparator{}, -- Separator for scrolled messages, `msgsep` flag of 'display'
+		-- MoreMsg{}, -- |more-prompt|
 		NonText({}), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
 		Normal({ bg = black, fg = blue }), -- Normal text
 		NormalFloat({}), -- Normal text in floating windows.
-		FloatBorder({}), -- Border of floating windows.
+		-- FloatBorder({ }), -- Border of floating windows.
 		FloatTitle({}), -- Title of floating windows.
-		NormalNC({}), -- normal text in non-current windows
+		-- NormalNC({}), -- normal text in non-current windows
 		Pmenu({ bg = blue.da(90).ro(17) }), -- Popup menu: Normal item.
-		PmenuSel({ bg = yellow }), -- Popup menu: Selected item.
-		-- PmenuKind      { }, -- Popup menu: Normal item "kind"
+		PmenuSel({ bg = yellow, fg = black }), -- Popup menu: Selected item.
+		-- PmenuKind{}, -- Popup menu: Normal item "kind"
 		-- PmenuKindSel   { }, -- Popup menu: Selected item "kind"
-		-- PmenuExtra     { }, -- Popup menu: Normal item "extra text"
 		-- PmenuExtraSel  { }, -- Popup menu: Selected item "extra text"
+		-- PmenuExtra     { }, -- Popup menu: Normal item "extra text"
 		-- PmenuSbar      { }, -- Popup menu: Scrollbar.
 		-- PmenuThumb     { }, -- Popup menu: Thumb of the scrollbar.
-		Question({}), -- |hit-enter| prompt and yes/no questions
-		QuickFixLine({}), -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
+		-- Question{}, -- |hit-enter| prompt and yes/no questions
+		-- QuickFixLine{}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
 		NoiceCmdlinePopupBorderCmdline({ fg = blue, gui = "bold" }),
 		NoiceCmdlineIconCmdline({ fg = blue, gui = "bold" }),
 		NoiceCmdlinePopupBorderHelp({ fg = blue, gui = "bold" }),
 		NoiceCmdlineIconHelp({ fg = blue, gui = "bold" }),
 		NoiceCmdlinePopupTitle({ fg = blue, gui = "bold" }),
-		Search({ bg = blue.de(70), gui = "bold" }), -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out. SpecialKey     { }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace| SpellBad       { }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
+		Search({ bg = blue.de(70), gui = "bold" }), -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+		-- SpecialKey{}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+		-- SpellBad{}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
 		-- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
-		-- SpellLocal     { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
+		-- SpellLocal{ fg = red }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		-- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
 		-- StatusLine     { }, -- Status line of current window
 		-- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		-- TabLine        { }, -- Tab pages line, not active tab page label
 		-- TabLineFill    { }, -- Tab pages line, where there are no labels
 		-- TabLineSel     { }, -- Tab pages line, active tab page label
-		Title({}), -- Titles for output from ":set all", ":autocmd" etc.
-		Visual({ bg = blue, fg = red, gui = "bold" }), -- Visual mode selection
+		-- Title{}, -- Titles for output from ":set all", ":autocmd" etc.
+		Visual({ bg = blue.da(65).ro(13) }), -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
 		-- WarningMsg     { }, -- Warning messages
 		Whitespace({ fg = blue }), -- "nbsp", "space", "tab" and "trail" in 'listchars'
@@ -150,7 +152,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ fg = hsl("#ffef00") }), -- Any comment
+		Comment({ fg = yellow }), -- Any comment
 
 		Constant({ fg = blue }), -- (*) Any constant
 		-- String         { }, --   A string constant: "this is a string"
@@ -170,7 +172,7 @@ local theme = lush(function(injected_functions)
 		-- Keyword        { }, --   any other keyword
 		-- Exception      { }, --   try, catch, throw
 
-		PreProc({ Statement }), -- (*) Generic Preprocessor
+		PrePro({ Statement }), -- (*) Generic Preprocessor
 		-- Include        { }, --   Preprocessor #include
 		-- Define         { }, --   Preprocessor #define
 		-- Macro          { }, --   Same as Define
@@ -190,7 +192,7 @@ local theme = lush(function(injected_functions)
 
 		Underlined({ gui = "underline, bold" }), -- Text that stands out, HTML links
 		-- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-		Error({ bg = red, fg = white, gui = "bold" }), -- Any erroneous construct
+		UError({ bg = red, fg = white, gui = "bold" }), -- Any erroneous construct
 		Todo({ bg = yellow, fg = black, gui = "bold" }), -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
 		-- These groups are for the native LSP client and diagnostic system. Some
@@ -199,12 +201,12 @@ local theme = lush(function(injected_functions)
 
 		-- See :h lsp-highlight, some groups may not be listed, submit a PR fix to lush-template!
 		--
-		LspReferenceText({}), -- Used for highlighting "text" references
-		LspReferenceRead({}), -- Used for highlighting "read" references
-		LspReferenceWrite({}), -- Used for highlighting "write" references
-		LspCodeLens({}), -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
-		LspCodeLensSeparator({}), -- Used to color the seperator between two or more code lens.
-		LspSignatureActiveParameter({}), -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
+		LspReferenceText({ bg = red }), -- Used for highlighting "text" references
+		LspReferenceRead({ bg = red }), -- Used for highlighting "read" references
+		LspReferenceWrite({ bg = red }), -- Used for highlighting "write" references
+		LspCodeLens({ fg = red }), -- Used to color the virtual text of the codelens. See |nvim_buf_set_extmark()|.
+		LspCodeLensSeparator({ fg = red }), -- Used to color the seperator between two or more code lens.
+		LspSignatureActiveParameter({ fg = red }), -- Used to highlight the active parameter in the signature help. See |vim.lsp.handlers.signature_help()|.
 
 		-- See :h diagnostic-highlights, some groups may not be listed, submit a PR fix to lush-template!
 		--
@@ -252,7 +254,7 @@ local theme = lush(function(injected_functions)
 		-- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
 		-- sym"@text.literal"      { }, -- Comment
-		-- sym"@text.reference"    { }, -- Identifier
+		-- sym("@text.reference")({ fg = red }), -- Identifier
 		-- sym"@text.title"        { }, -- Title
 		-- sym"@text.uri"          { }, -- Underlined
 		-- sym"@text.underline"    { }, -- Underlined
@@ -272,11 +274,11 @@ local theme = lush(function(injected_functions)
 		-- sym"@number"            { }, -- Number
 		-- sym"@boolean"           { }, -- Boolean
 		-- sym"@float"             { }, -- Float
-		-- sym"@function"          { }, -- Function
+		sym("@function")({ fg = blue }), -- Function
 		-- sym"@function.builtin"  { }, -- Special
 		-- sym"@function.macro"    { }, -- Macro
 		-- sym"@parameter"         { }, -- Identifier
-		-- sym"@method"            { }, -- Function
+		sym("@method")({ fg = blue }), -- Function
 		-- sym"@field"             { }, -- Identifier
 		-- sym"@property"          { }, -- Identifier
 		-- sym"@constructor"       { }, -- Special
@@ -286,7 +288,7 @@ local theme = lush(function(injected_functions)
 		-- sym"@operator"          { }, -- Operator
 		-- sym"@keyword"           { }, -- Keyword
 		-- sym"@exception"         { }, -- Exception
-		-- sym"@variable"          { }, -- Identifier
+		sym("@variable")({ fg = blue }), -- Identifier
 		-- sym"@type"              { }, -- Type
 		-- sym"@type.definition"   { }, -- Typedef
 		-- sym"@storageclass"      { }, -- StorageClass
