@@ -5,7 +5,7 @@ export-configs:
 	mv ~/.zshrc ~/.zshrc.bak
 	cp -r .* ~
 
-sync-configs:
+import-configs:
 	cp -r ~/.config/nvim .config 
 	cp ~/.zshrc .
 	cp ~/.tmux.conf .
