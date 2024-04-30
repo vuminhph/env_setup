@@ -152,7 +152,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ fg = yellow }), -- Any comment
+		Comment({ fg = hsl("#0094a6") }), -- Any comment
 
 		Constant({ fg = blue }), -- (*) Any constant
 		-- String         { }, --   A string constant: "this is a string"
@@ -266,12 +266,12 @@ local theme = lush(function(injected_functions)
 		-- sym"@constant.macro"    { }, -- Define
 		-- sym"@define"            { }, -- Define
 		-- sym"@macro"             { }, -- Macro
-		-- sym"@string"            { }, -- String
-		-- sym"@string.escape"     { }, -- SpecialChar
-		-- sym"@string.special"    { }, -- SpecialChar
-		-- sym"@character"         { }, -- Character
-		-- sym"@character.special" { }, -- SpecialChar
-		-- sym"@number"            { }, -- Number
+		sym("@string")({ fg = red }), -- String
+		-- sym("@string.escape")({}), -- SpecialChar
+		-- sym("@string.special")({ fg = hsl("#00607d") }), -- SpecialChar
+		sym("@character")({}), -- Character
+		sym("@character.special")({}), -- SpecialChar
+		sym("@number")({}), -- Number
 		-- sym"@boolean"           { }, -- Boolean
 		-- sym"@float"             { }, -- Float
 		sym("@function")({ fg = blue }), -- Function

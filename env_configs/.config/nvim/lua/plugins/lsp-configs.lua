@@ -7,7 +7,6 @@ return {
           "isort",
           "black",
           "isort",
-          "mypy",
           "ruff",
           "ruff_lsp",
           "debugpy",
