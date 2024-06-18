@@ -149,6 +149,3 @@ unset __conda_setup
 # <<< conda initialize <<<
 alias python3='python'
 
-# FPT.AI LLM
-export FPTAI_API_BASE="https://api.fpt.ai/nlp/llm/api"
-export FPTAI_API_KEY="sk-lT7xlLLS3y3uZ3sHKjbfaQ"
