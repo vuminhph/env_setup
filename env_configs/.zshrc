@@ -149,3 +149,5 @@ unset __conda_setup
 # <<< conda initialize <<<
 alias python3='python'
 
+# Setup fzf key bindings and fuzzy completion
+eval "$(fzf --zsh)"
