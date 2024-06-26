@@ -5,8 +5,38 @@ RED="\033[0;31m"
 YELLOW="\033[0;32m"
 RESET="\033[0m" # Reset color to default
 
+OS="$(uname -s)"
+
+# Install Zsh
+if command -v zsh >/dev/null 2>&1; then
+	echo -e "${YELLOW}Zsh is already installed.${RESET}"
+else
+	echo "${RED}Zsh is not installed.${RESET}"
+	install_zsh
+fi
+
+# Install Oh My Zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+	install_oh_my_zsh
+else
+	echo -e "${YELLOW}OhMyZsh is already installed. ${RESET}"
+fi
+
+# Install zsh-autosuggestions
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+	install_zsh_autosuggestions
+else
+	echo -e "${YELLOW}zsh-autosuggestions is already installed. ${RESET}"
+fi
+
+# Switch to Zsh shell
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+	chsh -s $(which zsh)
+	echo -e "${YELLOW}Default shell changed to Zsh. Please restart your terminal.${RESET}"
+fi
+
 install_zsh() {
-	if [[ "$OSTYPE" == "linux-gnu"* ]]; then
+	if [[ "$OS" == "Linux" ]]; then
 		echo -e "Installing Zsh on Linux..."
 		mkdir -p ~/local/bin
 		wget -O ~/local/bin/zsh.tar.xz https://sourceforge.net/projects/zsh/files/latest/download
@@ -14,13 +44,13 @@ install_zsh() {
 		cd ~/local/bin/zsh-* && ./configure --prefix=$HOME/local && make && make install
 		cd - >/dev/null
 		echo -e "${YELLOW}Zsh installed at $HOME/local/bin/zsh.${RESET}"
-	elif [[ "$OSTYPE" == "darwin"* ]]; then
+	elif [[ "$OS" == "Darwin" ]]; then
 		echo "Installing Zsh on macOS..."
 		mkdir -p ~/local/bin
 		brew install --prefix=$HOME/local zsh
 		echo -e "${YELLOW}Zsh installed at $HOME/local/bin/zsh${RESET}"
 	else
-		echo -e "${RED}Unsupported OS type: $OSTYPE.${RESET}"
+		echo -e "${RED}Unsupported OS type: $OS.${RESET}"
 		exit 1
 	fi
 }
@@ -37,31 +67,3 @@ install_zsh_autosuggestions() {
 	sed -i.bak 's/plugins=(git)/plugins=(git zsh-autosuggestions)/' ~/.zshrc
 	echo -e "${YELLOW}zsh-autosuggestions installed.${RESET}"
 }
-
-# Check if Zsh is installed
-if command -v zsh >/dev/null 2>&1; then
-	echo -e "${YELLOW}Zsh is already installed.${RESET}"
-else
-	echo "${RED}Zsh is not installed.${RESET}"
-	install_zsh
-fi
-
-# Install Oh My Zsh if not already installed
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-	install_oh_my_zsh
-else
-	echo -e "${YELLOW}OhMyZsh is already installed. ${RESET}"
-fi
-
-# Install zsh-autosuggestions plugin if not already installed
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-	install_zsh_autosuggestions
-else
-	echo -e "${YELLOW}zsh-autosuggestions is already installed. ${RESET}"
-fi
-
-# Switch to Zsh shell
-if [[ "$SHELL" != "$(which zsh)" ]]; then
-	chsh -s $(which zsh)
-	echo -e "${YELLOW}Default shell changed to Zsh. Please restart your terminal.${RESET}"
-fi

@@ -16,6 +16,7 @@ binaries_linux=(
 	"jq=https://github.com/stedolan/jq/releases/download/jq-1.7.1/jq-linux64"
 	"atuin=https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-x86_64-unknown-linux-gnu.tar.gz"
 	"bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz"
+	"lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Linux_x86_64.tar.gz"
 )
 
 # Define the list of required commands and their download URLs for macOS
@@ -25,10 +26,11 @@ binaries_macos=(
 	"jq=https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-arm64"
 	"atuin=https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-aarch64-apple-darwin.tar.gz"
 	"bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-apple-darwin.tar.gz"
+	"lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Darwin_arm64.tar.gz"
 )
 
 # Define the list of required commands
-commands=("fzf" "zoxide" "jq" "atuin" "bat")
+commands=("fzf" "zoxide" "jq" "atuin" "bat", "lazygit")
 
 # Check if a command exists
 command_exists() {
@@ -61,7 +63,7 @@ install_binary() {
 	esac
 
 	case "$cmd" in
-	fzf | zoxide | jq)
+	fzf | zoxide | jq | lazygit)
 		mv $tmpdir/${cmd%-*} "$LOCAL_BIN"
 		;;
 	bat | atuin)
