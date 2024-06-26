@@ -244,6 +244,7 @@ else
 	fi
 fi
 
+# LazyGit
 if ! command -v lazygit &>/dev/null; then
 	if [[ "$OS" == "Linux" ]]; then
 		# Install on Ubuntu and similar systems

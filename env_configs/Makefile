@@ -1,8 +1,9 @@
 export-configs:
-	mv -r ~/.config/nvim ~/.config/nvim.bak 
-	mv -r ~/.tmux ~/.tmux.bak 
-	mv ~/.tmux.conf ~/.tmux.conf.bak 
-	mv ~/.zshrc ~/.zshrc.bak
+	mv ~/.config/nvim{,.bak}
+	mv ~/.tmux{,.bak}
+	mv ~/.tmux.conf{./bak}
+	mv ~/.zshrc{,.bak}
+
 	cp -r .* ~
 
 import-configs:
