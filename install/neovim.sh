@@ -6,14 +6,13 @@ YELLOW="\033[0;32m"
 RESET="\033[0m" # Reset color to default
 
 LOCAL_BIN="$HOME/local/bin"
-INSTALL_DIR="$LOCAL_BIN/nvim"
 
 # Define the download URL for Neovim based on the operating system
 neovim_linux_url="https://github.com/neovim/neovim/releases/latest/download/nvim-linux64.tar.gz"
 neovim_macos_url="https://github.com/neovim/neovim/releases/latest/download/nvim-macos-arm64.tar.gz"
 
 # Create the install directory if it doesn't exist
-mkdir -p "$INSTALL_DIR"
+mkdir -p "$LOCAL_BIN"
 
 # Check if Neovim is already installed
 if command -v nvim &>/dev/null; then
@@ -28,18 +27,12 @@ install_neovim() {
 	local filename=$(basename "$url")
 
 	echo "Installing Neovim..."
-	curl -sSL "$url" -o "$tmpdir/$filename"
-
-	# Linux: Make the AppImage executable and move to install directory
-	if [[ "$(uname -s)" == "Linux" ]]; then
-		chmod +x "$tmpdir/$filename"
-		mv "$tmpdir/$filename" "$INSTALL_DIR/nvim"
-	fi
+	curl --progress-bar "$url" -o "$tmpdir/$filename"
 
 	# macOS: Extract and move Neovim to install directory
 	if [[ "$(uname -s)" == "Darwin" ]]; then
 		tar -xzf "$tmpdir/$filename" -C "$tmpdir"
-		mv "$tmpdir/nvim-osx64" "$INSTALL_DIR/nvim"
+		mv $tmpdir/${cmd}*/${cmd} "$LOCAL_BIN"
 	fi
 
 	rm -rf "$tmpdir"
