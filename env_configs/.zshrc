@@ -105,13 +105,17 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export PATH="$PATH:/bin"
+export PATH="$PATH:/usr/bin"
+export PATH="$PATH:$HOME/local/bin"
+export PATH="$PATH:$HOME/local"
+
 # Set CUDA PATH
 export CUDA_HOME=/usr/local/cuda-12.2
 export PATH=/usr/local/cuda-12.2/bin/:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64:$LD_LIBRARY_PATH
 
 # ZOXIDE
-export PATH=/root/.local/bin:$PATH
 eval "$(zoxide init --cmd cd zsh)"
 
 # ATUIN
@@ -135,14 +139,14 @@ bindkey "[D" backward-word
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('~/local/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('${HOME}/local/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "~/local/miniconda/etc/profile.d/conda.sh" ]; then
-        . "~/local/miniconda/etc/profile.d/conda.sh"
+    if [ -f "${HOME}/local/miniconda/etc/profile.d/conda.sh" ]; then
+        . "${HOME}/local/miniconda/etc/profile.d/conda.sh"
     else
-        export PATH="~/local/miniconda/bin:$PATH"
+        export PATH="${HOME}/local/miniconda/bin:$PATH"
     fi
 fi
 unset __conda_setup
@@ -151,3 +155,4 @@ alias python3='python'
 
 # Setup fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
+export PATH="/Users/vuminhph/local/miniconda/bin:$PATH"
