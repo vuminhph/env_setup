@@ -67,6 +67,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
+		Added({ fg = yellow }),
 		-- Conceal{}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		-- ColorColumn{}, -- Columns set with 'colorcolumn'
 		-- Cursor{}, -- Character under the cursor
@@ -78,11 +79,11 @@ local theme = lush(function(injected_functions)
 		DiffAdd({ fg = yellow }), -- Diff mode: Added line |diff.txt|
 		DiffChange({ fg = blue }), -- Diff mode: Changed line |diff.txt|
 		DiffDelete({ fg = red }), -- Diff mode: Deleted line |diff.txt|
-		-- DiffText       { }, -- Diff mode: Changed text within a changed line |diff.txt|
+		-- DiffText{}, -- Diff mode: Changed text within a changed line |diff.txt|
 		-- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
 		-- TermCursor     { }, -- Cursor in a focused terminal
 		-- TermCursorNC   { }, -- Cursor in an unfocused terminal
-		-- ErrorMsg       { }, -- Error messages on the command line
+		-- ErrorMsg({}), -- Error messages on the command line
 		VertSplit({ gui = "bold" }), -- Column separating vertically split windows
 		-- Folded({}), -- Line used for closed folds
 		-- FoldColumn({}), -- 'foldcolumn'
@@ -96,11 +97,11 @@ local theme = lush(function(injected_functions)
 		-- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
 		-- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
 		MatchParen({ bg = blue.da(30), fg = yellow, gui = "bold" }), -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
-		-- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
+		ModeMsg({}), -- 'showmode' message (e.g., "-- INSERT -- ")
 		MsgArea({ fg = blue }), -- Area for messages and cmdline
-		-- MsgSeparator{}, -- Separator for scrolled messages, `msgsep` flag of 'display'
+		-- MsgSeparator({ fg = blue, bg = black }), -- Separator for scrolled messages, `msgsep` flag of 'display'
 		-- MoreMsg{}, -- |more-prompt|
-		NonText({}), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+		NonText({ fg = red }), -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
 		Normal({ bg = black, fg = blue }), -- Normal text
 		NormalFloat({}), -- Normal text in floating windows.
 		-- FloatBorder({ }), -- Border of floating windows.
@@ -127,7 +128,7 @@ local theme = lush(function(injected_functions)
 		-- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
 		-- SpellLocal{ fg = red }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 		-- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-		-- StatusLine     { }, -- Status line of current window
+		StatusLine({}), -- Status line of current window
 		-- StatusLineNC   { }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 		-- TabLine        { }, -- Tab pages line, not active tab page label
 		-- TabLineFill    { }, -- Tab pages line, where there are no labels
@@ -155,20 +156,20 @@ local theme = lush(function(injected_functions)
 		Comment({ fg = hsl("#0094a6") }), -- Any comment
 
 		Constant({ fg = blue }), -- (*) Any constant
-		-- String         { }, --   A string constant: "this is a string"
+		String({}), --   A string constant: "this is a string"
 		-- Character      { }, --   A character constant: 'c', '\n'
 		-- Number         { }, --   A number constant: 234, 0xff
 		-- Boolean        { }, --   A boolean constant: TRUE, false
 		-- Float          { }, --   A floating point constant: 2.3e10
 
 		Identifier({ fg = blue }), -- (*) Any variable name
-		-- Function       { }, --   Function name (also: methods for classes)
+		Function({ fg = red, gui = "bold" }), --   Function name (also: methods for classes)
 
 		Statement({ fg = red, gui = "bold" }), -- (*) Any statement
 		-- Conditional    { }, --   if, then, else, endif, switch, etc.
 		-- Repeat         { }, --   for, do, while, etc.
 		-- Label          { }, --   case, default, etc.
-		-- Operator       { }, --   "sizeof", "+", "*", etc.
+		Operator({ fg = red }), --   "sizeof", "+", "*", etc.
 		-- Keyword        { }, --   any other keyword
 		-- Exception      { }, --   try, catch, throw
 
@@ -186,13 +187,13 @@ local theme = lush(function(injected_functions)
 		Special({ fg = red }), -- (*) Any special symbol
 		-- SpecialChar    { }, --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
-		-- Delimiter      { }, --   Character that needs attention
+		Delimiter({ fg = red }), --   Character that needs attention
 		-- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
 		-- Debug          { }, --   Debugging statements
 
 		Underlined({ gui = "underline, bold" }), -- Text that stands out, HTML links
-		-- Ignore         { }, -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
-		UError({ bg = red, fg = white, gui = "bold" }), -- Any erroneous construct
+		-- Ignore({}), -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
+		-- UError({ bg = red, fg = white, gui = "bold" }), -- Any erroneous construct
 		Todo({ bg = yellow, fg = black, gui = "bold" }), -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
 
 		-- These groups are for the native LSP client and diagnostic system. Some
@@ -220,11 +221,11 @@ local theme = lush(function(injected_functions)
 		DiagnosticVirtualTextInfo({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Info" diagnostic virtual text.
 		DiagnosticVirtualTextHint({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Hint" diagnostic virtual text.
 		DiagnosticVirtualTextOk({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Ok" diagnostic virtual text.
-		-- DiagnosticUnderlineError({ fg = red, bg = red.da(83).de(20), gui = "bold" }), -- Used to underline "Error" diagnostics.
-		-- DiagnosticUnderlineWarn({ fg = yellow, bg = yellow.da(83).de(20) }), -- Used to underline "Warn" diagnostics.
-		-- DiagnosticUnderlineInfo({ fg = blue, bg = blue.da(85).de(20) }), -- Used to underline "Info" diagnostics.
-		-- DiagnosticUnderlineHint({ fg = blue, bg = blue.da(85).de(20) }), -- Used to underline "Hint" diagnostics.
-		-- DiagnosticUnderlineOk({ fg = blue, bg = blue.da(85).de(20) }), -- Used to underline "Ok" diagnostics.
+		DiagnosticUnderlineError({ fg = red, bg = red.da(83).de(20), gui = "bold" }), -- Used to underline "Error" diagnostics.
+		DiagnosticUnderlineWarn({ fg = yellow, bg = yellow.da(83).de(20) }), -- Used to underline "Warn" diagnostics.
+		DiagnosticUnderlineInfo({ fg = blue, bg = blue.da(85).de(20) }), -- Used to underline "Info" diagnostics.
+		DiagnosticUnderlineHint({ fg = blue, bg = blue.da(85).de(20) }), -- Used to underline "Hint" diagnostics.
+		DiagnosticUnderlineOk({ fg = blue, bg = blue.da(85).de(20) }), -- Used to underline "Ok" diagnostics.
 		DiagnosticFloatingError({ fg = red, bg = red.da(83).de(20), gui = "bold" }), -- Used to color "Error" diagnostic messages in diagnostics float. See |vim.diagnostic.open_float()|
 		DiagnosticFloatingWarn({ fg = yellow, bg = yellow.da(83).de(20) }), -- Used to color "Warn" diagnostic messages in diagnostics float.
 		DiagnosticFloatingInfo({ fg = blue, bg = blue.da(85).de(20) }), -- Used to color "Info" diagnostic messages in diagnostics float.
@@ -253,6 +254,7 @@ local theme = lush(function(injected_functions)
 		--
 		-- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
+		sym("@attribute")({ fg = red }),
 		-- sym"@text.literal"      { }, -- Comment
 		-- sym("@text.reference")({ fg = red }), -- Identifier
 		-- sym"@text.title"        { }, -- Title
@@ -274,10 +276,10 @@ local theme = lush(function(injected_functions)
 		sym("@number")({}), -- Number
 		-- sym"@boolean"           { }, -- Boolean
 		-- sym"@float"             { }, -- Float
-		sym("@function")({ fg = blue }), -- Function
+		sym("@function")({ fg = red }), -- Function
 		-- sym"@function.builtin"  { }, -- Special
 		-- sym"@function.macro"    { }, -- Macro
-		-- sym"@parameter"         { }, -- Identifier
+		sym("@parameter")({}), -- Identifier
 		sym("@method")({ fg = blue }), -- Function
 		-- sym"@field"             { }, -- Identifier
 		-- sym"@property"          { }, -- Identifier
@@ -285,7 +287,7 @@ local theme = lush(function(injected_functions)
 		-- sym"@conditional"       { }, -- Conditional
 		-- sym"@repeat"            { }, -- Repeat
 		-- sym"@label"             { }, -- Label
-		-- sym"@operator"          { }, -- Operator
+		sym("@operator")({ fg = red }), -- Operator
 		-- sym"@keyword"           { }, -- Keyword
 		-- sym"@exception"         { }, -- Exception
 		sym("@variable")({ fg = blue }), -- Identifier

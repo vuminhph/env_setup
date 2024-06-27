@@ -9,10 +9,6 @@ RED="\033[0;31m"
 YELLOW="\033[0;32m"
 RESET="\033[0m" # Reset color to default
 
-# ZSH
-echo "ZSH installation"
-bash ./zsh.sh
-
 # Tmux
 echo "Tmux installation"
 bash ./tmux.sh
@@ -28,6 +24,10 @@ bash ./neovim.sh
 # Miniconda
 echo "Miniconda installation"
 bash ./miniconda.sh
+
+# ZSH
+echo "ZSH installation"
+bash ./zsh.sh
 
 # Add the local bin to PATH if not already added
 if ! echo $PATH | grep -q "$HOME/local/bin"; then

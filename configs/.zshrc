@@ -156,3 +156,6 @@ alias python3='python'
 # Setup fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 export PATH="/Users/vuminhph/local/miniconda/bin:$PATH"
+
+# Black formatter 
+export PATH="/Users/vuminhph/local/miniconda/bin/black:$PATH"

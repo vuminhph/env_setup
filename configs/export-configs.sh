@@ -37,4 +37,5 @@ for dir in "${dirs_to_backup[@]}"; do
 	backup_dir "$dir"
 done
 
-cp -r .* ~
+# Export the configs files
+cp -r .[^.]* ~
