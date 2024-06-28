@@ -50,6 +50,8 @@ local black = hsl("#000000")
 local blue = hsl("#01fdfe")
 local red = hsl("#ff3a3a")
 local yellow = hsl("#ffef00")
+local magenta = hsl("#A91079")
+local bright_magenta = hsl("#F806CC")
 
 -- LSP/Linters mistakenly show `undefined global` errors in the spec, they may
 -- support an annotation like the following. Consult your server documentation.
@@ -237,6 +239,15 @@ local theme = lush(function(injected_functions)
 		DiagnosticSignHint({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Hint" signs in sign column.
 		DiagnosticSignOk({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Ok" signs in sign column.
 
+		-- NeoTree
+		NeoTreeIndentMarker({ fg = blue }),
+		NeoTreeExpander({ fg = blue }),
+		NeoTreeModified({ fg = yellow }),
+		NeoTreeFileName({ fg = blue }),
+		NeoTreeDirectoryName({ fg = blue }),
+		NeoTreeGitModified({ fg = red, gui = "bold" }),
+		NeoTreeGitUntracked({ fg = blue, gui = "bold" }),
+
 		-- Tree-Sitter syntax groups.
 		--
 		-- See :h treesitter-highlight-groups, some groups may not be listed,
@@ -255,6 +266,9 @@ local theme = lush(function(injected_functions)
 		-- For more information see https://github.com/rktjmp/lush.nvim/issues/109
 
 		sym("@attribute")({ fg = red }),
+		sym("@diff.plus")({ fg = yellow }),
+		sym("@diff.minus")({ fg = red }),
+		sym("@diff.delta")({ fg = blue }),
 		-- sym"@text.literal"      { }, -- Comment
 		-- sym("@text.reference")({ fg = red }), -- Identifier
 		-- sym"@text.title"        { }, -- Title
