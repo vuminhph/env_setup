@@ -197,6 +197,7 @@ local theme = lush(function(injected_functions)
 		-- Ignore({}), -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
 		-- UError({ bg = red, fg = white, gui = "bold" }), -- Any erroneous construct
 		Todo({ bg = yellow, fg = black, gui = "bold" }), -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
+		Removed({ fg = red }),
 
 		-- These groups are for the native LSP client and diagnostic system. Some
 		-- other LSP clients may use these groups, or use their own. Consult your
@@ -240,8 +241,8 @@ local theme = lush(function(injected_functions)
 		DiagnosticSignOk({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Ok" signs in sign column.
 
 		-- NeoTree
-		NeoTreeIndentMarker({ fg = blue }),
-		NeoTreeExpander({ fg = blue }),
+		NeoTreeIndentMarker({ fg = yellow }),
+		NeoTreeExpander({ fg = yellow }),
 		NeoTreeModified({ fg = yellow }),
 		NeoTreeFileName({ fg = blue }),
 		NeoTreeDirectoryName({ fg = blue }),
