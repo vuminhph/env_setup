@@ -137,20 +137,21 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 bindkey "[C" forward-word
 bindkey "[D" backward-word
 
-# >>> conda initialize >>>
+# >>> conda init >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('${HOME}/local/miniconda/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$(CONDA_REPORT_ERRORS=false ~/local/miniconda/bin/conda shell.zsh hook 2> /dev/null)"
 if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
+  eval "$__conda_setup"
 else
-    if [ -f "${HOME}/local/miniconda/etc/profile.d/conda.sh" ]; then
-        . "${HOME}/local/miniconda/etc/profile.d/conda.sh"
-    else
-        export PATH="${HOME}/local/miniconda/bin:$PATH"
-    fi
+  if [ -f "~/local/miniconda/etc/profile.d/conda.sh" ]; then
+    . "~/local/miniconda/etc/profile.d/conda.sh"
+  else
+    export PATH="~/local/miniconda/bin:$PATH"
+  fi
 fi
 unset __conda_setup
-# <<< conda initialize <<<
+# <<< conda init <<<
+
 alias python3='python'
 
 # Setup fzf key bindings and fuzzy completion

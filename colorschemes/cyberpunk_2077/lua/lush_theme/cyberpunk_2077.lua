@@ -241,13 +241,19 @@ local theme = lush(function(injected_functions)
 		DiagnosticSignOk({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Ok" signs in sign column.
 
 		-- NeoTree
-		NeoTreeIndentMarker({ fg = yellow }),
-		NeoTreeExpander({ fg = yellow }),
+		NeoTreeIndentMarker({ fg = blue }),
+		NeoTreeExpander({ fg = blue }),
 		NeoTreeModified({ fg = yellow }),
 		NeoTreeFileName({ fg = blue }),
 		NeoTreeDirectoryName({ fg = blue }),
-		NeoTreeGitModified({ fg = red, gui = "bold" }),
-		NeoTreeGitUntracked({ fg = blue, gui = "bold" }),
+		NeoTreeGitAdded({ fg = yellow }),
+		NeoTreeGitModified({ fg = red }),
+		NeoTreeGitUntracked({ fg = red }),
+
+		-- Git
+		GitSignsStagedAdd({ fg = black }),
+		GitSignsStagedChange({ fg = black }),
+		GitSignsStagedDelete({ fg = black }),
 
 		-- Tree-Sitter syntax groups.
 		--
