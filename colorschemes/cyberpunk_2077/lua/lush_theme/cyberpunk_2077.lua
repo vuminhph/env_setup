@@ -49,6 +49,7 @@ local white = hsl("#ffffff")
 local black = hsl("#000000")
 local blue = hsl("#01fdfe")
 local red = hsl("#ff3a3a")
+local dark_red = hsl("#d32121")
 local yellow = hsl("#ffef00")
 local magenta = hsl("#A91079")
 local bright_magenta = hsl("#F806CC")
@@ -70,6 +71,8 @@ local theme = lush(function(injected_functions)
 		-- See :h highlight-groups
 		--
 		Added({ fg = yellow }),
+		Removed({ fg = red }),
+		Changed({ fg = blue }),
 		-- Conceal{}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		-- ColorColumn{}, -- Columns set with 'colorcolumn'
 		-- Cursor{}, -- Character under the cursor
@@ -135,7 +138,7 @@ local theme = lush(function(injected_functions)
 		-- TabLine        { }, -- Tab pages line, not active tab page label
 		-- TabLineFill    { }, -- Tab pages line, where there are no labels
 		-- TabLineSel     { }, -- Tab pages line, active tab page label
-		-- Title{}, -- Titles for output from ":set all", ":autocmd" etc.
+		Title({}), -- Titles for output from ":set all", ":autocmd" etc.
 		Visual({ bg = blue.da(65).ro(13) }), -- Visual mode selection
 		-- VisualNOS      { }, -- Visual mode selection when vim is "Not Owning the Selection".
 		-- WarningMsg     { }, -- Warning messages
@@ -145,7 +148,7 @@ local theme = lush(function(injected_functions)
 		-- WinBar         { }, -- Window bar of current window
 		-- WinBarNC       { }, -- Window bar of not-current windows
 
-		CursorLine({ bg = blue.da(86).ro(16) }), --- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		CursorLine({ bg = blue.da(85).ro(16) }), --- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
 
 		-- Common vim syntax groups used for all kinds of code and markup.
 		-- Commented-out groups should chain up to their preferred (*) group
@@ -158,7 +161,7 @@ local theme = lush(function(injected_functions)
 		Comment({ fg = hsl("#0094a6") }), -- Any comment
 
 		Constant({ fg = blue }), -- (*) Any constant
-		String({}), --   A string constant: "this is a string"
+		String({ fg = blue }), --   A string constant: "this is a string"
 		-- Character      { }, --   A character constant: 'c', '\n'
 		-- Number         { }, --   A number constant: 234, 0xff
 		-- Boolean        { }, --   A boolean constant: TRUE, false
@@ -186,8 +189,8 @@ local theme = lush(function(injected_functions)
 		Structure({ fg = red, gui = "bold" }), --   struct, union, enum, etc.
 		Typedef({ Structure }), --   A typedef
 
-		Special({ fg = red }), -- (*) Any special symbol
-		-- SpecialChar    { }, --   Special character in a constant
+		Special({ fg = red, gui = "bold" }), -- (*) Any special symbol
+		SpecialChar({}), --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
 		Delimiter({ fg = red }), --   Character that needs attention
 		-- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
@@ -197,7 +200,6 @@ local theme = lush(function(injected_functions)
 		-- Ignore({}), -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
 		-- UError({ bg = red, fg = white, gui = "bold" }), -- Any erroneous construct
 		Todo({ bg = yellow, fg = black, gui = "bold" }), -- Anything that needs extra attention; mostly the keywords TODO FIXME and XXX
-		Removed({ fg = red }),
 
 		-- These groups are for the native LSP client and diagnostic system. Some
 		-- other LSP clients may use these groups, or use their own. Consult your
@@ -241,19 +243,29 @@ local theme = lush(function(injected_functions)
 		DiagnosticSignOk({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Ok" signs in sign column.
 
 		-- NeoTree
-		NeoTreeIndentMarker({ fg = blue }),
-		NeoTreeExpander({ fg = blue }),
+		NeoTreeIndentMarker({ fg = yellow }),
+		NeoTreeExpander({ fg = yellow }),
 		NeoTreeModified({ fg = yellow }),
 		NeoTreeFileName({ fg = blue }),
 		NeoTreeDirectoryName({ fg = blue }),
-		NeoTreeGitAdded({ fg = yellow }),
-		NeoTreeGitModified({ fg = red }),
-		NeoTreeGitUntracked({ fg = red }),
+		NeoTreeGitModified({ fg = red, gui = "bold" }),
+		NeoTreeGitUntracked({ fg = red, gui = "bold" }),
+		NeoTreeFileIcon({ bg = black }),
 
-		-- Git
 		GitSignsStagedAdd({ fg = black }),
 		GitSignsStagedChange({ fg = black }),
 		GitSignsStagedDelete({ fg = black }),
+
+		-- Icons
+		MiniIconsYellow({ fg = yellow }),
+		MiniIconsOrange({ fg = yellow }),
+		MiniIconsBlue({ fg = blue }),
+		MiniIconsCyan({ fg = blue }),
+		MiniIconsGrey({ fg = blue }),
+		MiniIconsGreen({ fg = blue }),
+		MiniIconsAzure({ fg = blue }),
+		MiniIconsRed({ fg = red }),
+		MiniIconsPurple({ fg = red }),
 
 		-- Tree-Sitter syntax groups.
 		--
@@ -289,7 +301,7 @@ local theme = lush(function(injected_functions)
 		-- sym"@constant.macro"    { }, -- Define
 		-- sym"@define"            { }, -- Define
 		-- sym"@macro"             { }, -- Macro
-		sym("@string")({ fg = red }), -- String
+		sym("@string")({ fg = dark_red }), -- String
 		-- sym("@string.escape")({}), -- SpecialChar
 		-- sym("@string.special")({ fg = hsl("#00607d") }), -- SpecialChar
 		sym("@character")({}), -- Character
@@ -312,8 +324,8 @@ local theme = lush(function(injected_functions)
 		-- sym"@keyword"           { }, -- Keyword
 		-- sym"@exception"         { }, -- Exception
 		sym("@variable")({ fg = blue }), -- Identifier
-		-- sym"@type"              { }, -- Type
-		-- sym"@type.definition"   { }, -- Typedef
+		sym("@type")({ fg = blue }), -- Type
+		sym("@type.definition")({}), -- Typedef
 		-- sym"@storageclass"      { }, -- StorageClass
 		-- sym"@structure"         { }, -- Structure
 		-- sym"@namespace"         { }, -- Identifier
