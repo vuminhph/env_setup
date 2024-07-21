@@ -1,6 +1,8 @@
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
+clear 
+
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 source ~/.profile
@@ -137,6 +139,8 @@ test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell
 bindkey "[C" forward-word
 bindkey "[D" backward-word
 
+alias python3='python'
+
 # >>> conda init >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$(CONDA_REPORT_ERRORS=false ~/local/miniconda/bin/conda shell.zsh hook 2> /dev/null)"
@@ -152,11 +156,14 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 
-alias python3='python'
-
 # Setup fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 export PATH="/Users/vuminhph/local/miniconda/bin:$PATH"
 
-# Black formatter 
-export PATH="/Users/vuminhph/local/miniconda/bin/black:$PATH"
+export PYTHONPATH="/Users/vuminhph/miniconda3/envs/enhance/bin/python"
+
+# Fastfetch
+fastfetch --logo ~/env_setup/fastfetch/cyberpunk.txt --logo-color-1 red
+
+# Thefuck
+eval $(thefuck --alias)

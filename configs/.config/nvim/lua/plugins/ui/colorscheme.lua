@@ -10,4 +10,7 @@ return {
       colorscheme = "cyberpunk_2077",
     },
   },
+  {
+    "nvim-tree/nvim-web-devicons",
+  },
 }

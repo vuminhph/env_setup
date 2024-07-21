@@ -27,7 +27,7 @@ return {
     "neovim/nvim-lspconfig",
     dependencies = {
       { "folke/neoconf.nvim", cmd = "Neoconf", config = false, dependencies = { "nvim-lspconfig" } },
-      { "folke/neodev.nvim",  opts = {} },
+      { "folke/neodev.nvim", opts = {} },
       "mason.nvim",
       "williamboman/mason-lspconfig.nvim",
       "nvimtools/none-ls.nvim",
@@ -37,6 +37,32 @@ return {
       local lspconfig = require("lspconfig")
       lspconfig.pyright.setup({})
       lspconfig.lua_ls.setup({})
+
+      lspconfig.pylsp.setup({
+        settings = {
+          pylsp = {
+            plugins = {
+              -- formatter options
+              black = { enabled = true },
+              -- autopep8 = { enabled = false },
+              -- yapf = { enabled = false },
+              -- linter options
+              pylint = { enabled = true, executable = "pylint" },
+              -- pyflakes = { enabled = false },
+              -- pycodestyle = { enabled = false },
+              -- type checker
+              -- pylsp_mypy = { enabled = true },
+              -- auto-completion options
+              jedi_completion = { fuzzy = true },
+              -- import sorting
+              pyls_isort = { enabled = false },
+            },
+          },
+        },
+        flags = {
+          debounce_text_changes = 200,
+        },
+      })
 
       -- Keybinding for formatting
       vim.keymap.set("n", "<leader>F", function()
