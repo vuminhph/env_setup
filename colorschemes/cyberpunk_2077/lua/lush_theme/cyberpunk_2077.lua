@@ -49,7 +49,6 @@ local white = hsl("#ffffff")
 local black = hsl("#000000")
 local blue = hsl("#01fdfe")
 local red = hsl("#ff3a3a")
-local dark_red = hsl("#d32121")
 local yellow = hsl("#ffef00")
 local magenta = hsl("#A91079")
 local bright_magenta = hsl("#F806CC")
@@ -95,12 +94,12 @@ local theme = lush(function(injected_functions)
 		-- SignColumn({}), -- Column where |signs| are displayed
 		IncSearch({ fg = blue, bg = blue.da(85).de(20) }), -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 		Substitute({ fg = blue, bg = blue.da(85).de(20) }), -- |:substitute| replacement text highlighting
-		LineNr({ fg = blue }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
-		-- LineNrAbove    { }, -- Line number for when the 'relativenumber' option is set, above the cursor line
-		-- LineNrBelow    { }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-		-- CursorLineNr   { fg = blue }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
-		-- CursorLineFold { }, -- Like FoldColumn when 'cursorline' is set for the cursor line
-		-- CursorLineSign { }, -- Like SignColumn when 'cursorline' is set for the cursor line
+		-- LineNr({ fg = blue.da(90) }), -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+		LineNrAbove({ fg = blue.da(60).ro(10) }), -- Line number for when the 'relativenumber' option is set, above the cursor line
+		LineNrBelow({ fg = blue.da(60).ro(10) }), -- Line number for when the 'relativenumber' option is set, below the cursor line
+		CursorLineNr({ fg = blue.da(30).ro(10) }), -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+		-- CursorLineFold({ fg = blue }), -- Like FoldColumn when 'cursorline' is set for the cursor line
+		-- CursorLineSign({ fg = blue }), -- Like SignColumn when 'cursorline' is set for the cursor line
 		MatchParen({ bg = blue.da(30), fg = yellow, gui = "bold" }), -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 		ModeMsg({}), -- 'showmode' message (e.g., "-- INSERT -- ")
 		MsgArea({ fg = blue }), -- Area for messages and cmdline
@@ -148,7 +147,7 @@ local theme = lush(function(injected_functions)
 		-- WinBar         { }, -- Window bar of current window
 		-- WinBarNC       { }, -- Window bar of not-current windows
 
-		CursorLine({ bg = blue.da(85).ro(16) }), --- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+		CursorLine({ bg = blue.da(85).ro(20) }), --- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
 
 		-- Common vim syntax groups used for all kinds of code and markup.
 		-- Commented-out groups should chain up to their preferred (*) group
@@ -158,7 +157,8 @@ local theme = lush(function(injected_functions)
 		--
 		-- Uncomment and edit if you want more specific syntax highlighting.
 
-		Comment({ fg = hsl("#0094a6") }), -- Any comment
+		-- Comment({ fg = hsl("#0094a6") }), -- Any comment
+		Comment({ fg = blue.da(50).ro(10) }), -- Any comment
 
 		Constant({ fg = blue }), -- (*) Any constant
 		String({ fg = blue }), --   A string constant: "this is a string"
@@ -190,12 +190,11 @@ local theme = lush(function(injected_functions)
 		Typedef({ Structure }), --   A typedef
 
 		Special({ fg = red, gui = "bold" }), -- (*) Any special symbol
-		SpecialChar({}), --   Special character in a constant
+		-- SpecialChar({}), --   Special character in a constant
 		-- Tag            { }, --   You can use CTRL-] on this
 		Delimiter({ fg = red }), --   Character that needs attention
 		-- SpecialComment { }, --   Special things inside a comment (e.g. '\n')
 		-- Debug          { }, --   Debugging statements
-
 		Underlined({ gui = "underline, bold" }), -- Text that stands out, HTML links
 		-- Ignore({}), -- Left blank, hidden |hl-Ignore| (NOTE: May be invisible here in template)
 		-- UError({ bg = red, fg = white, gui = "bold" }), -- Any erroneous construct
@@ -243,13 +242,13 @@ local theme = lush(function(injected_functions)
 		DiagnosticSignOk({ fg = blue, bg = blue.da(85).de(20) }), -- Used for "Ok" signs in sign column.
 
 		-- NeoTree
-		NeoTreeIndentMarker({ fg = yellow }),
-		NeoTreeExpander({ fg = yellow }),
+		NeoTreeIndentMarker({ fg = blue.da(50) }),
+		NeoTreeExpander({ fg = blue.da(30) }),
 		NeoTreeModified({ fg = yellow }),
 		NeoTreeFileName({ fg = blue }),
 		NeoTreeDirectoryName({ fg = blue }),
-		NeoTreeGitModified({ fg = red, gui = "bold" }),
-		NeoTreeGitUntracked({ fg = red, gui = "bold" }),
+		NeoTreeGitModified({ fg = red }),
+		NeoTreeGitUntracked({ fg = red }),
 		NeoTreeFileIcon({ bg = black }),
 
 		GitSignsStagedAdd({ fg = black }),
@@ -261,11 +260,11 @@ local theme = lush(function(injected_functions)
 		MiniIconsOrange({ fg = yellow }),
 		MiniIconsBlue({ fg = blue }),
 		MiniIconsCyan({ fg = blue }),
-		MiniIconsGrey({ fg = blue }),
 		MiniIconsGreen({ fg = blue }),
-		MiniIconsAzure({ fg = blue }),
 		MiniIconsRed({ fg = red }),
 		MiniIconsPurple({ fg = red }),
+		MiniIconsGrey({ fg = red }),
+		MiniIconsAzure({ fg = red }),
 
 		-- Tree-Sitter syntax groups.
 		--
@@ -301,7 +300,7 @@ local theme = lush(function(injected_functions)
 		-- sym"@constant.macro"    { }, -- Define
 		-- sym"@define"            { }, -- Define
 		-- sym"@macro"             { }, -- Macro
-		sym("@string")({ fg = dark_red }), -- String
+		sym("@string")({ fg = red.da(45).ro(10) }), -- String
 		-- sym("@string.escape")({}), -- SpecialChar
 		-- sym("@string.special")({ fg = hsl("#00607d") }), -- SpecialChar
 		sym("@character")({}), -- Character
@@ -324,7 +323,7 @@ local theme = lush(function(injected_functions)
 		-- sym"@keyword"           { }, -- Keyword
 		-- sym"@exception"         { }, -- Exception
 		sym("@variable")({ fg = blue }), -- Identifier
-		sym("@type")({ fg = blue }), -- Type
+		sym("@type")({ fg = red }), -- Type
 		sym("@type.definition")({}), -- Typedef
 		-- sym"@storageclass"      { }, -- StorageClass
 		-- sym"@structure"         { }, -- Structure
