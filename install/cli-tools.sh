@@ -11,95 +11,100 @@ RESET="\033[0m" # Reset color to default
 
 # Define the list of required commands and their download URLs for Linux
 binaries_linux=(
-	"fzf=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-linux_amd64.tar.gz"
-	"zoxide=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz"
-	"jq=https://github.com/stedolan/jq/releases/download/jq-1.7.1/jq-linux64"
-	"atuin=https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-x86_64-unknown-linux-gnu.tar.gz"
-	"bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz"
-	"lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Linux_x86_64.tar.gz"
+  "fzf=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-linux_amd64.tar.gz"
+  "zoxide=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz"
+  "jq=https://github.com/stedolan/jq/releases/download/jq-1.7.1/jq-linux64"
+  "atuin=https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-x86_64-unknown-linux-gnu.tar.gz"
+  "bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz"
+  "lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Linux_x86_64.tar.gz"
+  "fastfetch=https://github.com/fastfetch-cli/fastfetch/releases/download/2.18.1/fastfetch-linux-aarch64.tar.gz"
 )
 
 # Define the list of required commands and their download URLs for macOS
 binaries_macos=(
-	"fzf=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-darwin_arm64.zip"
-	"zoxide=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-aarch64-apple-darwin.tar.gz"
-	"jq=https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-arm64"
-	"atuin=https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-aarch64-apple-darwin.tar.gz"
-	"bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-apple-darwin.tar.gz"
-	"lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Darwin_arm64.tar.gz"
+  "fzf=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-darwin_arm64.zip"
+  "zoxide=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-aarch64-apple-darwin.tar.gz"
+  "jq=https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-arm64"
+  "atuin=https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-aarch64-apple-darwin.tar.gz"
+  "bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-apple-darwin.tar.gz"
+  "lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Darwin_arm64.tar.gz"
+  "fastfetch=https://github.com/fastfetch-cli/fastfetch/releases/download/2.18.1/fastfetch-macos-universal.tar.gz"
 )
 
 # Define the list of required commands
-commands=("fzf" "zoxide" "jq" "atuin" "bat", "lazygit")
+commands=("fzf" "zoxide" "jq" "atuin" "bat", "lazygit", "fastfetch")
 
 # Check if a command exists
 command_exists() {
-	command -v "$1" >/dev/null 2>&1
+  command -v "$1" >/dev/null 2>&1
 }
 
-# Function to download and install binary
+# Function to download and install binary.
 install_binary() {
-	local cmd="$1"
-	local url="$2"
-	local tmpdir=$(mktemp -d)
-	local filename=$(basename "$url")
-	local extension="${filename##*.}"
+  local cmd="$1"
+  local url="$2"
+  local tmpdir=$(mktemp -d)
+  local filename=$(basename "$url")
+  local extension="${filename##*.}"
 
-	echo "Installing $cmd..."
-	if ! curl --progress-bar --fail -L "$url" -o "$tmpdir/$filename"; then
-		echo "Download failed. Check that the release/filename are correct."
-	fi
+  echo "Installing $cmd..."
+  if ! curl --progress-bar --fail -L "$url" -o "$tmpdir/$filename"; then
+    echo "Download failed. Check that the release/filename are correct."
+  fi
 
-	case "$extension" in
-	gz)
-		tar -xzf "$tmpdir/$filename" -C "$tmpdir"
-		;;
-	zip)
-		unzip -q "$tmpdir/$filename" -d "$tmpdir"
-		;;
-	*)
-		echo -e "${RED}Unsupported file format: $extension${RESET}"
-		;;
-	esac
+  case "$extension" in
+  gz)
+    tar -xzf "$tmpdir/$filename" -C "$tmpdir"
+    ;;
+  zip)
+    unzip -q "$tmpdir/$filename" -d "$tmpdir"
+    ;;
+  *)
+    echo -e "${RED}Unsupported file format: $extension${RESET}"
+    ;;
+  esac
 
-	case "$cmd" in
-	fzf | zoxide | jq | lazygit)
-		mv $tmpdir/${cmd%-*} "$LOCAL_BIN"
-		;;
-	bat | atuin)
-		mv $tmpdir/${cmd}*/${cmd} "$LOCAL_BIN"
-		;;
-	esac
+  case "$cmd" in
+  fzf | zoxide | jq | lazygit)
+    mv $tmpdir/${cmd%-*} "$LOCAL_BIN"
+    ;;
+  bat | atuin)
+    mv $tmpdir/${cmd}*/${cmd} "$LOCAL_BIN"
+    ;;
+  fastfetch)
+    mv $tmpdir/${cmd}*/usr/bin/${cmd} "$LOCAL_BIN"
+    ;;
+  esac
 
-	rm -rf "$tmpdir"
+  rm -rf "$tmpdir"
 }
 
-# Determine the current operating system
+# Install the binaries based on OS.
 case "$(uname -s)" in
 Linux*)
-	for binary in "${binaries_linux[@]}"; do
-		cmd="${binary%=*}"
-		url="${binary#*=}"
-		if ! command_exists "$cmd"; then
-			install_binary "$cmd" "$url"
-		else
-			echo -e "${YELLOW}$cmd is already installed${RESET}"
-		fi
-	done
-	;;
+  for binary in "${binaries_linux[@]}"; do
+    cmd="${binary%=*}"
+    url="${binary#*=}"
+    if ! command_exists "$cmd"; then
+      install_binary "$cmd" "$url"
+    else
+      echo -e "${YELLOW}$cmd is already installed${RESET}"
+    fi
+  done
+  ;;
 Darwin*)
-	for binary in "${binaries_macos[@]}"; do
-		cmd="${binary%=*}"
-		url="${binary#*=}"
-		if ! command_exists "$cmd"; then
-			install_binary "$cmd" "$url"
-		else
-			echo -e "${YELLOW}$cmd is already installed${RESET}"
-		fi
-	done
-	;;
+  for binary in "${binaries_macos[@]}"; do
+    cmd="${binary%=*}"
+    url="${binary#*=}"
+    if ! command_exists "$cmd"; then
+      install_binary "$cmd" "$url"
+    else
+      echo -e "${YELLOW}$cmd is already installed${RESET}"
+    fi
+  done
+  ;;
 *)
-	echo -e "${RED}Unsupported operating system: $(uname -s)${RESET}"
-	exit 1
-	;;
+  echo -e "${RED}Unsupported operating system: $(uname -s)${RESET}"
+  exit 1
+  ;;
 esac
