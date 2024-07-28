@@ -13,26 +13,30 @@ RESET="\033[0m" # Reset color to default
 binaries_linux=(
   "fzf=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-linux_amd64.tar.gz"
   "zoxide=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-x86_64-unknown-linux-musl.tar.gz"
-  "jq=https://github.com/stedolan/jq/releases/download/jq-1.7.1/jq-linux64"
-  "atuin=https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-x86_64-unknown-linux-gnu.tar.gz"
+  "jq=https://github.com/stedolan/jq/releases/latest/download/jq-linux64"
+  "atuin=https://github.com/atuinsh/atuin/releases/latest/download/atuin-x86_64-unknown-linux-gnu.tar.gz"
   "bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz"
   "lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Linux_x86_64.tar.gz"
-  "fastfetch=https://github.com/fastfetch-cli/fastfetch/releases/download/2.18.1/fastfetch-linux-aarch64.tar.gz"
+  "fastfetch=https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-aarch64.tar.gz"
+  "eza=https://github.com/eza-community/eza/releases/latest/eza_x86_64-unknown-linux-musl.tar.gz"
+  "yazi=https://github.com/sxyazi/yazi/releases/latest/yazi-x86_64-unknown-linux-musl.zip"
 )
 
 # Define the list of required commands and their download URLs for macOS
 binaries_macos=(
   "fzf=https://github.com/junegunn/fzf/releases/download/0.53.0/fzf-0.53.0-darwin_arm64.zip"
   "zoxide=https://github.com/ajeetdsouza/zoxide/releases/download/v0.9.4/zoxide-0.9.4-aarch64-apple-darwin.tar.gz"
-  "jq=https://github.com/jqlang/jq/releases/download/jq-1.7.1/jq-macos-arm64"
-  "atuin=https://github.com/atuinsh/atuin/releases/download/v18.3.0/atuin-aarch64-apple-darwin.tar.gz"
+  "jq=https://github.com/jqlang/jq/releases/latest/download/jq-macos-arm64"
+  "atuin=https://github.com/atuinsh/atuin/releases/latest/download/atuin-aarch64-apple-darwin.tar.gz"
   "bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-x86_64-apple-darwin.tar.gz"
   "lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Darwin_arm64.tar.gz"
-  "fastfetch=https://github.com/fastfetch-cli/fastfetch/releases/download/2.18.1/fastfetch-macos-universal.tar.gz"
+  "fastfetch=https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-macos-universal.tar.gz"
+  "eza=https://github.com/eza-community/eza/releases/latest/download/eza_arm-unknown-linux-gnueabihf.tar.gz"
+  "yazi=https://github.com/sxyazi/yazi/releases/latest/yazi-aarch64-apple-darwin.zip"
 )
 
 # Define the list of required commands
-commands=("fzf" "zoxide" "jq" "atuin" "bat", "lazygit", "fastfetch")
+commands=($(echo "${binaries_macos[@]}" | cut -d'=' -f1))
 
 # Check if a command exists
 command_exists() {
@@ -65,10 +69,10 @@ install_binary() {
   esac
 
   case "$cmd" in
-  fzf | zoxide | jq | lazygit)
+  fzf | zoxide | jq | lazygit | eza)
     mv $tmpdir/${cmd%-*} "$LOCAL_BIN"
     ;;
-  bat | atuin)
+  bat | atuin | yazi)
     mv $tmpdir/${cmd}*/${cmd} "$LOCAL_BIN"
     ;;
   fastfetch)

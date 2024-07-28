@@ -6,8 +6,9 @@ return {
         ensure_installed = {
           "isort",
           "black",
-          "isort",
           "debugpy",
+          "pyright",
+          "lua_ls",
         },
       })
     end,
@@ -35,6 +36,8 @@ return {
 
     config = function()
       local lspconfig = require("lspconfig")
+      local null_ls = require("null-ls")
+
       lspconfig.pyright.setup({})
       lspconfig.lua_ls.setup({})
 
@@ -61,6 +64,13 @@ return {
         },
         flags = {
           debounce_text_changes = 200,
+        },
+      })
+
+      null_ls.setup({
+        sources = {
+          null_ls.builtins.formatting.isort,
+          null_ls.builtins.formatting.black,
         },
       })
 

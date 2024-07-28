@@ -19,7 +19,7 @@ bash ./cli-tools.sh
 
 # Neovim
 echo "Neovim instalation"
-bash ./neovim.sh
+bash ./nvim.sh
 
 # Miniconda
 echo "Miniconda installation"
@@ -31,7 +31,7 @@ bash ./zsh.sh
 
 # Add the local bin to PATH if not already added
 if ! echo $PATH | grep -q "$HOME/local/bin"; then
-	echo 'export PATH=$HOME/local/bin:$PATH' >>~/.zshrc
-	export PATH=$LOCAL_BIN:$PATH
-	echo -e "\n${YELLOW}Added $LOCAL_BIN to PATH.${RESET}"
+  echo 'export PATH=$HOME/local/bin:$PATH' >>~/.zshrc
+  export PATH=$LOCAL_BIN:$PATH
+  echo -e "\n${YELLOW}Added $LOCAL_BIN to PATH.${RESET}"
 fi

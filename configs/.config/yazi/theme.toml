@@ -1,0 +1,28 @@
+# # Count
+# count_copied   = { fg = "blue", bg = "#000000" }
+# count_cut      = { fg = "blue", bg = "#000000" }
+# count_selected = { fg = "blue", bg = "#000000" }
+
+
+
+# : Status {{{
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#000000", bg = "#000000" }
+
+# Mode
+mode_normal = { fg = "#000000", bg = "white", bold = true }
+# mode_select = { fg = "#1e1e2e", bg = "#a6e3a1", bold = true }
+# mode_unset  = { fg = "#1e1e2e", bg = "#f2cdcd", bold = true }
+
+permissions_t = { fg = "red" }
+permissions_r = { fg = "white" }
+permissions_w = { fg = "red" }
+permissions_x = { fg = "red" }
+permissions_s = { fg = "magenta" }
+
+[input]
+border = { fg = "white"}
+value = {fg = "red"}

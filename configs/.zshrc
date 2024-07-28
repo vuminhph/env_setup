@@ -171,10 +171,16 @@ export PATH="/Users/vuminhph/local/miniconda/bin:$PATH"
 export PYTHONPATH="/Users/vuminhph/miniconda3/envs/enhance/bin/python"
 
 # Fastfetch
-fastfetch --logo ~/env_setup/fastfetch/cyberpunk.txt --logo-color-1 red
+fastfetch --logo ~/env_setup/fastfetch/cyberpunk.txt --logo-color-1 magenta
 
 # Thefuck
 eval $(thefuck --alias)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Eza
+alias ls='eza --icons=always -w=100 -x'
+
+# Yazi 
+alias yz='yazi'

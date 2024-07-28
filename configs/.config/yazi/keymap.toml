@@ -1,0 +1,15 @@
+[[manager.prepend_keymap]]
+on   = [ "l" ]
+run  = "plugin --sync smart-enter"
+desc = "Enter the child directory, or open the file"
+
+[[manager.prepend_keymap]]
+on = [ "H" ]
+run = "hidden toggle"
+desc = "Toggles hidden files"
+
+[[manager.prepend_keymap]]
+on = ["T"]
+run = "shell 'tmux new-window -c \"$PWD\"' --confirm"
+desc = "New tmux window here" 
+
