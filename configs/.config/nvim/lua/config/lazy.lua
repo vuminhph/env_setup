@@ -17,10 +17,11 @@ require("lazy").setup({
     -- { import = "lazyvim.plugins.extras.lang.typescript" },
     -- { import = "lazyvim.plugins.extras.lang.json" },
     -- { import = "lazyvim.plugins.extras.ui.mini-animate" },
+
     -- import lush colorscheme
     {
-      dir = string.format("%s/env_setup/colorschemes/cyberpunk_2077", homeDir),
-      name = "cyberpunk_2077",
+      dir = string.format("%s/env_setup/colorschemes/nightcity", homeDir),
+      name = "nightcity",
       lazy = true,
     },
     -- import/override with your plugins

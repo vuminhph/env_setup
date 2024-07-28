@@ -69,13 +69,14 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		Added({ fg = yellow }),
-		Removed({ fg = red }),
-		Changed({ fg = blue }),
+		Added({ fg = yellow.da(50) }),
+		Removed({ fg = red.da(50) }),
+		Changed({ fg = blue.da(50) }),
 		-- Conceal{}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
-		-- ColorColumn{}, -- Columns set with 'colorcolumn'
+		ColorColumn({ bg = "#101010", fg = red }), -- Columns set with 'colorcolumn'
+		CodeBlock({ bg = "#101010" }),
 		-- Cursor{}, -- Character under the cursor
-		CurSearch({ bg = yellow, fg = red, gui = "bold" }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
+		CurSearch({ bg = yellow, fg = black, gui = "bold" }), -- Highlighting a search pattern under the cursor (see 'hlsearch')
 		-- lCursor {} , -- Character under the cursor when |language-mapping| is used (see 'guicursor')
 		-- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
 		-- CursorColumn   { }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
@@ -126,7 +127,7 @@ local theme = lush(function(injected_functions)
 		NoiceCmdlinePopupBorderHelp({ fg = blue, gui = "bold" }),
 		NoiceCmdlineIconHelp({ fg = blue, gui = "bold" }),
 		NoiceCmdlinePopupTitle({ fg = blue, gui = "bold" }),
-		Search({ bg = blue.de(70), gui = "bold" }), -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
+		Search({ fg = black, bg = yellow.de(40).da(20) }), -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
 		-- SpecialKey{}, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
 		-- SpellBad{}, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
 		-- SpellCap       { }, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.

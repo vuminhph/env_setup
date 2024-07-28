@@ -7,7 +7,7 @@ return {
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "cyberpunk_2077",
+      colorscheme = "nightcity",
     },
   },
   {
