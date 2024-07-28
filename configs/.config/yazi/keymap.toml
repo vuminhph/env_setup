@@ -8,6 +8,12 @@ on = [ "H" ]
 run = "hidden toggle"
 desc = "Toggles hidden files"
 
+
+[[manager.prepend_keymap]]
+on = [ "g", "p" ]
+run = "cd ~/Projects/FCI"
+desc = "Cd to ~/Projects/FCI"
+
 [[manager.prepend_keymap]]
 on = ["T"]
 run = "shell 'tmux new-window -c \"$PWD\"' --confirm"

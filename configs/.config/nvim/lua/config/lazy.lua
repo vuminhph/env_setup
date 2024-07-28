@@ -20,8 +20,8 @@ require("lazy").setup({
 
     -- import lush colorscheme
     {
-      dir = string.format("%s/env_setup/colorschemes/nightcity", homeDir),
-      name = "nightcity",
+      dir = string.format("%s/env_setup/colorschemes/night-city", homeDir),
+      name = "night-city",
       lazy = true,
     },
     -- import/override with your plugins

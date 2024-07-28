@@ -4,9 +4,10 @@
 # count_selected = { fg = "blue", bg = "#000000" }
 
 
+[manager]
+preview_hovered = { underline = false}
 
 # : Status {{{
-
 [status]
 separator_open  = ""
 separator_close = ""
