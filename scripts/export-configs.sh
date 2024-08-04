@@ -26,6 +26,11 @@ files_to_backup=(
 )
 dirs_to_backup=(
   "$HOME/.config/nvim"
+  "$HOME/.config/iterm2"
+  "$HOME/.config/skhd"
+  "$HOME/.config/sketchybar"
+  "$HOME/.config/yabai"
+  "$HOME/.config/yazi"
   "$HOME/.tmux"
 )
 

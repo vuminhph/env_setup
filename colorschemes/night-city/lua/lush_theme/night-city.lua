@@ -69,9 +69,9 @@ local theme = lush(function(injected_functions)
 		--
 		-- See :h highlight-groups
 		--
-		Added({ fg = yellow.da(20) }),
-		Removed({ fg = red.da(20) }),
-		Changed({ fg = blue.da(20) }),
+		Added({ fg = yellow.da(50) }),
+		Removed({ fg = red.da(50) }),
+		Changed({ fg = blue.da(50) }),
 		-- Conceal{}, -- Placeholder characters substituted for concealed text (see 'conceallevel')
 		ColorColumn({ bg = "#101010", fg = red }), -- Columns set with 'colorcolumn'
 		CodeBlock({ bg = "#101010" }),
@@ -266,6 +266,10 @@ local theme = lush(function(injected_functions)
 		MiniIconsPurple({ fg = red }),
 		MiniIconsGrey({ fg = red }),
 		MiniIconsAzure({ fg = red }),
+
+		-- Markdown
+		RenderMarkdownH1({ fg = red }),
+		RenderMarkdownH1Bg({ fg = red, bg = black.li(10) }),
 
 		-- Tree-Sitter syntax groups.
 		--

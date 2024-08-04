@@ -8,34 +8,54 @@ return {
     end,
   },
   {
-    {
-      "lukas-reineke/headlines.nvim",
-      opts = function()
-        local opts = {}
-        for _, ft in ipairs({ "markdown", "norg", "rmd", "org" }) do
-          opts[ft] = {
-            headline_highlights = {},
-            -- disable bullets for now. See https://github.com/lukas-reineke/headlines.nvim/issues/66
-            bullets = {},
-            quote_string = false,
-            fat_headline_lower_string = "▀",
-          }
-          for i = 1, 6 do
-            local hl = "Headline" .. i
-            vim.api.nvim_set_hl(0, hl, { link = "Headline", default = true })
-            table.insert(opts[ft].headline_highlights, hl)
-          end
-        end
-        return opts
-      end,
-      ft = { "markdown", "norg", "rmd", "org" },
-      config = function(_, opts)
-        -- PERF: schedule to prevent headlines slowing down opening a file
-        vim.schedule(function()
-          require("headlines").setup(opts)
-          require("headlines").refresh()
-        end)
-      end,
+    "MeanderingProgrammer/markdown.nvim",
+    opts = {
+      file_types = { "markdown", "norg", "rmd", "org" },
+      code = {
+        enabled = true,
+        sign = false,
+        style = "full",
+        left_pad = 0,
+        right_pad = 0,
+        width = "full",
+        border = "thin",
+        above = "▄",
+        below = "▀",
+        highlight = "RenderMarkdownCode",
+        highlight_inline = "RenderMarkdownCodeInline",
+      },
+      heading = {
+        enabled = true,
+        sign = false,
+        width = "full",
+        backgrounds = {
+          "RenderMarkdownH1Bg",
+        },
+        foregrounds = {
+          "RenderMarkdownH1",
+        },
+      },
+      bullet = {
+        enabled = false,
+      },
     },
+    ft = { "markdown", "norg", "rmd", "org" },
+    config = function(_, opts)
+      require("render-markdown").setup(opts)
+      LazyVim.toggle.map("<leader>um", {
+        name = "Render Markdown",
+        get = function()
+          return require("render-markdown.state").enabled
+        end,
+        set = function(enabled)
+          local m = require("render-markdown")
+          if enabled then
+            m.enable()
+          else
+            m.disable()
+          end
+        end,
+      })
+    end,
   },
 }

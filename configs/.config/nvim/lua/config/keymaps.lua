@@ -5,3 +5,6 @@
 -- vim.keymap.set("n", "<C-\\>", function()
 --   Util.terminal(nil, { border = "rounded" })
 -- end, { desc = "Term with border" })
+--
+vim.keymap.set("n", "<C-s>", ":w<CR>")
+vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a")

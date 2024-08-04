@@ -19,3 +19,12 @@ on = ["T"]
 run = "shell 'tmux new-window -c \"$PWD\"' --confirm"
 desc = "New tmux window here" 
 
+[[manager.prepend_keymap]]
+on = [" ", "s"]
+run = "sort modified --dir-first=no --reverse"
+desc = "Sort modified" 
+
+[[manager.prepend_keymap]]
+on = [" ", "n"]
+run = "sort alphabetical --dir-first"
+desc = "Return to default sort" 

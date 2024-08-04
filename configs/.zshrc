@@ -1,14 +1,10 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
-clear 
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
@@ -125,6 +121,13 @@ export CUDA_HOME=/usr/local/cuda-12.2
 export PATH=/usr/local/cuda-12.2/bin/:$PATH
 export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64:$LD_LIBRARY_PATH
 
+# Fastfetch
+alias fastfetch='clear && fastfetch --logo ~/env_setup/fastfetch/night-city.txt --logo-color-1 magenta --disable-linewrap true'
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
 # ZOXIDE
 eval "$(zoxide init --cmd cd zsh)"
 
@@ -164,14 +167,14 @@ fi
 unset __conda_setup
 # <<< conda init <<<
 
+# Jupyter
+export JUPYTER_PLATFORM_DIRS=1
+
 # Setup fzf key bindings and fuzzy completion
 eval "$(fzf --zsh)"
 export PATH="/Users/vuminhph/local/miniconda/bin:$PATH"
 
 export PYTHONPATH="/Users/vuminhph/miniconda3/envs/enhance/bin/python"
-
-# Fastfetch
-fastfetch --logo ~/env_setup/fastfetch/cyberpunk.txt --logo-color-1 magenta
 
 # Thefuck
 eval $(thefuck --alias)
@@ -180,7 +183,9 @@ eval $(thefuck --alias)
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # Eza
-alias ls='eza --icons=always -w=100 -x'
+alias ls='eza --icons=always -w=60 -x'
 
 # Yazi 
 alias yz='yazi'
+
+clear
