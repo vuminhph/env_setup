@@ -1,16 +1,41 @@
 {
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
   "display": {
-    "separator": " -> ",
+    "separator": " - ",
   },
   "modules": [
-    "title",
+    {
+      "key": " user",
+      "keyColor": "red",
+      "type": "title",
+      "format": "{user-name}",
+    },
+    {
+      "key": "├ [terminal]",
+      "keyColor": "red",
+      "type": "terminal",
+    },
+    {
+      "type": "shell",
+      "key": "├ [shell]",
+      "keyColor": "red",
+    },
+    {
+      "type": "terminalfont",
+      "key": "├ [font]",
+      "keyColor": "red",
+    },
+    {
+      "type": "wallpaper",
+      "key": "╰󰸉 [wallpaper]",
+      "keyColor": "red",
+    },
+
     "break",
     {
       "type": "os",
       "key": " OS",
-      "keyColor": "yellow",
-      "format": "{2}",
+      "keyColor": "red",
     },
     {
       "type": "uptime",
@@ -19,28 +44,13 @@
     },
     {
       "type": "kernel",
-      "key": "├󰅐 [kernel]",
-      "keyColor": "red",
-    },
-    {
-      "type": "shell",
-      "key": "├ [shell]",
-      "keyColor": "red",
-    },
-    {
-      "type": "terminal",
-      "key": "└ [terminal]",
+      "key": "╰ [kernel]",
       "keyColor": "red",
     },
     "break",
     {
       "type": "host",
       "key": "󰌢 PC",
-      "keyColor": "red",
-    },
-    {
-      "type": "display",
-      "key": "├󰍹 [display]",
       "keyColor": "red",
     },
     {
@@ -54,9 +64,16 @@
       "keyColor": "red",
     },
     {
+      "type": "display",
+      "key": "├󰍹 [display]",
+      "keyColor": "red",
+      "format": "{1}x{2} @ {3}Hz",
+    },
+    {
       "type": "disk",
       "key": "├ [disk]",
       "keyColor": "red",
+      "format": "{1} / {2} ({3})",
     },
     {
       "type": "memory",
@@ -70,7 +87,7 @@
     },
     {
       "type": "battery",
-      "key": "└ [battery]",
+      "key": "╰ [battery]",
       "keyColor": "red",
     },
   ],

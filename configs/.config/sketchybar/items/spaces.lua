@@ -31,7 +31,7 @@ for i = 1, 10, 1 do
 			height = 26,
 			border_color = colors.black,
 		},
-		popup = { background = { border_width = 5, border_color = colors.black } },
+		popup = { background = { border_width = 5, border_color = colors.white } },
 	})
 
 	spaces[i] = space

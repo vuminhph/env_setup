@@ -8,3 +8,5 @@
 --
 vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("i", "<C-s>", "<Esc>:w<CR>a")
+
+vim.keymap.set("x", "<leader>p", '"_dP')

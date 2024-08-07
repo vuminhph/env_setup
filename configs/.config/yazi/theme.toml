@@ -24,6 +24,18 @@ permissions_w = { fg = "red" }
 permissions_x = { fg = "red" }
 permissions_s = { fg = "magenta" }
 
+[select]
+border = {bg = "red"}
+active = {bg = "red"}
+inactive = {bg = "blue"}
+
+[filetype]
+# Fallback
+rules = [
+  { name = "*", fg = "white" },
+  { name = "*/", fg = "blue" }
+]
+
 [input]
 border = { fg = "white"}
-value = {fg = "red"}
+value = {fg = "blue"}

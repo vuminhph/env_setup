@@ -36,6 +36,7 @@ sbar.default({
 			border_width = 1,
 		},
 	},
+
 	popup = {
 		background = {
 			border_width = 2,

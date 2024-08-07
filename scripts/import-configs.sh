@@ -15,6 +15,7 @@ rsync -a --ignore-errors ~/.config/sketchybar configs/.config/
 rsync -a --ignore-errors ~/.config/yazi configs/.config/
 rsync -a --ignore-errors ~/.config/yabai configs/.config/
 rsync -a --ignore-errors ~/.config/iterm2 configs/.config/
+rsync -a --ignore-errors ~/.config/kitty configs/.config/
 rsync -a --ignore-errors ~/.tmux configs/.tmux/
 
 rsync -a --ignore-errors ~/.tmux.conf configs/
