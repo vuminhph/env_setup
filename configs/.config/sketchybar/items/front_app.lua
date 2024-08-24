@@ -7,15 +7,15 @@ local front_app = sbar.add("item", "front_app", {
 	label = {
 		font = {
 			family = settings.font.text,
-			-- style = settings.font.style_map["Bold"],
-			size = 13.0,
+			style = "SemiBold",
+			size = 14.0,
 		},
 	},
 	updates = true,
 })
 
 front_app:subscribe("front_app_switched", function(env)
-	front_app:set({ label = { string = env.INFO } })
+	front_app:set({ label = { string = string.upper(env.INFO) } })
 end)
 
 front_app:subscribe("mouse.clicked", function(env)

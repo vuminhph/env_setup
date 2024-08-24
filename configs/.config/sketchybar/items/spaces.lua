@@ -72,7 +72,9 @@ for i = 1, 10, 1 do
 		space:set({
 			icon = { highlight = selected },
 			label = { highlight = selected },
-			background = { border_color = selected and colors.black or colors.bg2 },
+			background = {
+				border_color = selected and colors.black or colors.bg2,
+			},
 		})
 		space_bracket:set({
 			background = { border_color = selected and colors.red or colors.bg2 },

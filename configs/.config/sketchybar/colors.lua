@@ -1,17 +1,17 @@
 return {
 	black = 0x00000000,
-	white = 0xff01fdfe,
-	red = 0xffc3191a,
-	green = 0xff01fdfe,
-	blue = 0xff01fdfe,
+	white = 0xffc4c4c3,
+	red = 0xfff8f9f9,
+	green = 0xffc4c4c4,
+	blue = 0xffc4c4c3,
 	yellow = 0xffe7c664,
 	orange = 0xfff39660,
 	magenta = 0xffb39df3,
-	grey = 0xff01fdfe,
+	grey = 0xffc4c4c3,
 	transparent = 0x00000000,
 
 	bar = {
-		bg = 0x003b3c3e,
+		bg = 0x00f8f9f9,
 		border = 0x00000000,
 	},
 	popup = {

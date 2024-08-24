@@ -11,8 +11,8 @@ local cal = sbar.add("item", {
 		-- padding_right = 8,
 		padding_bottom = 4,
 		font = {
-			style = settings.font.text,
-			size = 13.0,
+			style = "SemiBold",
+			size = 15.0,
 		},
 	},
 	-- label = {

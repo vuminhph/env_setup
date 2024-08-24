@@ -188,4 +188,7 @@ alias ls='eza --icons=always -w=60 -x'
 # Yazi 
 alias yz='yazi'
 
+# Pbcopy - clipboard 
+alias pb='pbcopy'
+
 clear

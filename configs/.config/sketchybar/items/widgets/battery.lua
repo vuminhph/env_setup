@@ -10,7 +10,7 @@ local battery = sbar.add("item", "widgets.battery", {
 			size = 19.0,
 		},
 	},
-	label = { font = { family = settings.font.numbers } },
+	label = { font = { family = settings.font.numbers, size = 15 } },
 	update_freq = 180,
 	popup = { align = "center" },
 })
@@ -21,11 +21,19 @@ local remaining_time = sbar.add("item", {
 		string = "Time remaining:",
 		width = 100,
 		align = "left",
+		font = {
+			style = settings.font.style_map["Regular"],
+			size = 15.0,
+		},
 	},
 	label = {
 		string = "??:??h",
 		width = 100,
 		align = "right",
+		font = {
+			style = settings.font.style_map["Regular"],
+			size = 15.0,
+		},
 	},
 })
 

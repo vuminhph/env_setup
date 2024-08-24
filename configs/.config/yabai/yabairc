@@ -31,7 +31,10 @@ yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Calculator$" manage=off
 yabai -m rule --add app="^FaceTime$" manage=off
 yabai -m rule --add app="^Finder$" manage=off
-# yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Karabiner-Elements$" manage=off
+yabai -m rule --add app="^Elmedia Video Player$" manage=off
+yabai -m rule --add app="^Books$" manage=off
+yabai -m rule --add app="^Activity Monitor$" manage=off
 
 # Window transparency
 yabai -m config window_opacity on
@@ -40,7 +43,7 @@ yabai -m config normal_window_opacity 0.9
 yabai -m config window_opacity_duration 0.1
 
 # Borders
-borders active_color=0xff01fdfe inactive_color=0xff494d64 width=4.0 &
+borders active_color=0xfff8f9f9 inactive_color=0xff494d64 width=7.0 &
 
 # sketchybar
 yabai -m signal --add event=window_focused action="sketchybar --trigger window_focus"
