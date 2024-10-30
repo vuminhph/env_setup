@@ -237,13 +237,14 @@ local theme = lush(function(injected_functions)
 
 		-- NeoTree
 		NeoTreeIndentMarker({ fg = blue.da(50) }),
-		NeoTreeExpander({ fg = blue.da(30) }),
-		NeoTreeModified({ fg = yellow }),
-		NeoTreeFileName({ fg = blue }),
+		NeoTreeExpander({ fg = blue }),
+		NeoTreeModified({ fg = blue }),
+		NeoTreeFileName({ fg = blue.da(20) }),
 		NeoTreeDirectoryName({ fg = blue }),
 		NeoTreeGitModified({ fg = red }),
 		NeoTreeGitUntracked({ fg = red }),
 		NeoTreeFileIcon({ bg = black }),
+		NeoTreeDotFile({ fg = blue.da(50) }),
 
 		GitSignsStagedAdd({ fg = black }),
 		GitSignsStagedChange({ fg = black }),
@@ -299,7 +300,7 @@ local theme = lush(function(injected_functions)
 		-- sym"@define"            { }, -- Define
 		-- sym"@macro"             { }, -- Macro
 		-- sym("@string")({ fg = blue.da(45).ro(5) }), -- String
-		sym("@string")({ fg = red }), -- String
+		sym("@string")({ fg = red.da(45).ro(5) }), -- String
 		sym("@string.yaml")({ fg = blue }), -- String
 		sym("@string.documentation")({ fg = blue.da(45).ro(5) }), -- String
 		-- sym("@string.escape")({}), -- SpecialChar
