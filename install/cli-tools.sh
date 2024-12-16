@@ -18,7 +18,7 @@ binaries_linux=(
   "bat=https://github.com/sharkdp/bat/releases/download/v0.24.0/bat-v0.24.0-i686-unknown-linux-musl.tar.gz"
   "lazygit=https://github.com/jesseduffield/lazygit/releases/download/v0.42.0/lazygit_0.42.0_Linux_x86_64.tar.gz"
   "fastfetch=https://github.com/fastfetch-cli/fastfetch/releases/latest/download/fastfetch-linux-aarch64.tar.gz"
-  "eza=https://github.com/eza-community/eza/releases/latest/eza_x86_64-unknown-linux-musl.tar.gz"
+  "eza=https://github.com/eza-community/eza/releases/latest/download/eza_x86_64-unknown-linux-musl.tar.gz"
   "yazi=https://github.com/sxyazi/yazi/releases/latest/yazi-x86_64-unknown-linux-musl.zip"
 )
 

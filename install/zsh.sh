@@ -7,41 +7,7 @@ RESET="\033[0m" # Reset color to default
 
 OS="$(uname -s)"
 
-# Install Zsh
-if command -v zsh >/dev/null 2>&1; then
-  echo -e "${YELLOW}Zsh is already installed.${RESET}"
-else
-  echo "${RED}Zsh is not installed.${RESET}"
-  install_zsh
-fi
-
-# Install Oh My Zsh
-if [ ! -d "$HOME/.oh-my-zsh" ]; then
-  install_oh_my_zsh
-else
-  echo -e "${YELLOW}OhMyZsh is already installed. ${RESET}"
-fi
-
-# Install zsh-autosuggestions
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
-  install_zsh_autosuggestions
-else
-  echo -e "${YELLOW}zsh-autosuggestions is already installed. ${RESET}"
-fi
-
-# Install powerlevel10k
-if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
-  install_p10k
-else
-  echo -e "${YELLOW}powerlevel10k is already installed. ${RESET}"
-fi
-
-# Switch to Zsh shell
-if [[ "$SHELL" != "$(which zsh)" ]]; then
-  chsh -s $(which zsh)
-  echo -e "${YELLOW}Default shell changed to Zsh. Please restart your terminal.${RESET}"
-fi
-
+# Install functions
 install_zsh() {
   if [[ "$OS" == "Linux" ]]; then
     echo -e "Installing Zsh on Linux..."
@@ -80,3 +46,38 @@ install_p10k() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
   echo -e "${YELLOW}powerlevel10k installed.${RESET}"
 }
+
+# Install Zsh
+if command -v zsh >/dev/null 2>&1; then
+  echo -e "${YELLOW}Zsh is already installed.${RESET}"
+else
+  echo "${RED}Zsh is not installed.${RESET}"
+  install_zsh
+fi
+
+# Install Oh My Zsh
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  install_oh_my_zsh
+else
+  echo -e "${YELLOW}OhMyZsh is already installed. ${RESET}"
+fi
+
+# Install zsh-autosuggestions
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-autosuggestions" ]; then
+  install_zsh_autosuggestions
+else
+  echo -e "${YELLOW}zsh-autosuggestions is already installed. ${RESET}"
+fi
+
+# Install powerlevel10k
+if [ ! -d "${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" ]; then
+  install_p10k
+else
+  echo -e "${YELLOW}powerlevel10k is already installed. ${RESET}"
+fi
+
+# Switch to Zsh shell
+if [[ "$SHELL" != "$(which zsh)" ]]; then
+  chsh -s $(which zsh)
+  echo -e "${YELLOW}Default shell changed to Zsh. Please restart your terminal.${RESET}"
+fi
