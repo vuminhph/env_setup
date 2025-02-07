@@ -21,9 +21,12 @@ bash ./cli-tools.sh
 echo "Neovim instalation"
 bash ./nvim.sh
 
-# Miniconda
-echo "Miniconda installation"
-bash ./miniconda.sh
+# # Miniconda
+# echo "Miniconda installation"
+# bash ./miniconda.sh
+# MiniForge
+echo "MiniForge installation"
+bash ./miniforge.sh
 
 # ZSH
 echo "ZSH installation"
